@@ -1,15 +1,11 @@
-/* Fuente suave y estilo general */
-html {
-    scroll-behavior: smooth;
-}
-
+/* Estilos principales */
 body {
     margin: 0;
     padding: 0;
     font-family: 'Playfair Display', serif;
     background: linear-gradient(to bottom, #101010, #0a0f1c);
+
     color: #f5f5f5;
-    overflow-x: hidden;
 }
 
 /* HEADER fijo */
@@ -61,10 +57,10 @@ nav a:hover {
 
 /* Secciones principales con espacio superior */
 section {
-    padding: 60px 20px;
+    padding: 40px 20px;
     max-width: 1000px;
     margin: auto;
-    margin-top: 180px; /* Ajustado para header+nav */
+    margin-top: 150px; /* espacio para header + nav */
 }
 
 section h2 {
