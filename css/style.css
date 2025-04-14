@@ -85,9 +85,3 @@ footer {
 }
 
 /* Estilo para el logo */
-.logo {
-    width: 10px;           /* Ajusta el tamaño según tu logo */
-    height: auto;
-    display: block;
-    margin: 0 auto 10px;    /* Centrado arriba del título */
-}
