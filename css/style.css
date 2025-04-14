@@ -8,9 +8,14 @@ body {
 }
 
 header {
+    position: fixed;
+    top: 0;
+    width: 100%;
     background-color: #181818;
-    padding: 40px 20px;
+    z-index: 1000;
+    padding: 20px;
     text-align: center;
+    border-bottom: 1px solid #333
 }
 
 header h1 {
@@ -19,11 +24,16 @@ header h1 {
 }
 
 nav {
+    position: fixed;
+    top: 100px; /* ajusta según el alto del header */
+    width: 100%;
     background-color: #1f1f1f;
     display: flex;
     justify-content: center;
     gap: 20px;
     padding: 15px;
+    z-index: 999;
+    border-bottom: 1px solid #333;
 }
 
 nav a {
