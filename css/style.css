@@ -55,12 +55,21 @@ section h2 {
 }
 
 .servicio {
-    background-color: #403f3f;
+    background-color: #1e1e1e;
     padding: 20px;
     border-radius: 8px;
     border-left: 5px solid #00c3ff;
     transition: transform 0.3s;
+    color: #fff;
+    text-decoration: none;
+    display: block;
 }
+
+.servicio:hover {
+    transform: scale(1.03);
+    background-color: #2b2b2b;
+}
+
 
 .servicio:hover {
     transform: scale(1.03);
