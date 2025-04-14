@@ -1,128 +1,115 @@
-/* General */
+/* Fuente suave y estilo general */
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     margin: 0;
+    padding: 0;
     font-family: 'Playfair Display', serif;
-    background-color: #ffffff;
-    color: #1c1c1c;
+    background: linear-gradient(to bottom, #101010, #0a0f1c);
+    color: #f5f5f5;
+    overflow-x: hidden;
 }
 
-/* Header */
+/* HEADER fijo */
 header {
-    background-color: #00c3ff;
-    padding: 20px;
-    text-align: center;
-    color: white;
-}
-
-.contenedor-header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.logo {
-    width: 60px;
-    height: auto;
-    margin-right: 15px;
-}
-
-.info-header h1 {
-    margin: 0;
-    font-size: 2em;
-}
-
-.info-header p {
-    margin: 5px 0 0;
-}
-
-/* Navegación */
-nav {
-    background-color: #ffffff;
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    border-bottom: 2px solid #00c3ff;
-    padding: 15px 0;
-    position: sticky;
+    position: fixed;
     top: 0;
+    width: 100%;
+    background-color: #181818;
     z-index: 1000;
+    padding: 30px 20px 20px;
+    text-align: center;
+    border-bottom: 1px solid #333;
+}
+
+header h1 {
+    color: #00c3ff;
+    margin: 0;
+}
+
+header p {
+    margin: 5px 0 0;
+    color: #ccc;
+}
+
+/* NAV fijo debajo del header */
+nav {
+    position: fixed;
+    top: 100px; /* altura del header */
+    width: 100%;
+    background-color: #1f1f1f;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 15px 0;
+    z-index: 999;
+    border-bottom: 1px solid #333;
 }
 
 nav a {
     color: #00c3ff;
     text-decoration: none;
     font-weight: bold;
+    transition: color 0.2s;
 }
 
 nav a:hover {
-    color: #1c1c1c;
+    color: #ffffff;
 }
 
-/* Secciones */
+/* Secciones principales con espacio superior */
 section {
     padding: 60px 20px;
     max-width: 1000px;
     margin: auto;
+    margin-top: 180px; /* Ajustado para header+nav */
 }
 
 section h2 {
     color: #00c3ff;
-    text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
 }
 
-/* Tarjetas de Servicios */
-.tarjetas-servicio {
+/* Servicios en cuadrícula */
+.servicios {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
 }
 
-.tarjeta {
-    background-color: #f9f9f9;
-    border: 1px solid #e0e0e0;
-    border-radius: 10px;
-    padding: 25px;
-    box-shadow: 0 4px 6px rgba(0, 195, 255, 0.1);
-    transition: transform 0.3s, box-shadow 0.3s;
+.servicio {
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 5px solid #00c3ff;
+    transition: transform 0.3s;
+    color: #fff;
+    text-decoration: none;
+    display: block;
 }
 
-.tarjeta:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 12px rgba(0, 195, 255, 0.2);
-}
-
-.tarjeta h3 {
-    margin-top: 0;
-    color: #00c3ff;
+.servicio:hover {
+    transform: scale(1.03);
+    background-color: #2b2b2b;
 }
 
 /* Contacto */
 #contacto ul {
     list-style: none;
     padding-left: 0;
-    text-align: center;
 }
 
 #contacto li {
-    margin: 10px 0;
-}
-
-#contacto a {
-    color: #00c3ff;
-    text-decoration: none;
-}
-
-#contacto a:hover {
-    text-decoration: underline;
+    margin-bottom: 10px;
 }
 
 /* Footer */
 footer {
-    background-color: #00c3ff;
-    color: white;
+    background-color: #181818;
     text-align: center;
     padding: 20px;
-    margin-top: 40px;
+    font-size: 0.9em;
+    color: #aaa;
 }
