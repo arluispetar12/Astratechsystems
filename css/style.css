@@ -55,6 +55,18 @@ section {
     border-radius: 8px;
 }
 
+.m3u8 {
+    background-color: #6683f4;
+    padding: 20px;
+    border-radius: 8px;
+}
+.asesoria {
+    background-color: #6683f4;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+
 /* Pie de página */
 footer {
     background-color: #1a1a1a;
