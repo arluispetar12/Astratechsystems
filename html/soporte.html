@@ -24,9 +24,19 @@
             <p>Ofrecemos asistencia técnica especializada para las principales plataformas y tecnologías del mercado.</p>
         </div>
 
-        <div class="grid-soporte">
+        <div class="filtros-soporte">
+            <input type="text" id="buscador-soporte" placeholder="🔍 Buscar servicio..." onkeyup="filtrarServicios()">
+            <div class="filtro-categorias">
+                <button class="filtro-btn active" onclick="filtrarServiciosPorCategoria('todos')">Todos</button>
+                <button class="filtro-btn" onclick="filtrarServiciosPorCategoria('tv')">TV</button>
+                <button class="filtro-btn" onclick="filtrarServiciosPorCategoria('servidores')">Servidores</button>
+                <button class="filtro-btn" onclick="filtrarServiciosPorCategoria('redes')">Redes</button>
+            </div>
+        </div>
+
+        <div class="grid-soporte" id="contenedor-servicios">
             <!-- Soporte Astra -->
-            <div class="soporte-card" data-categoria="tv">
+            <div class="soporte-card" data-categoria="tv" data-nombre="astra">
                 <div class="soporte-imagen">
                     <img src="../img/soporte/astra.jpg" alt="Soporte Astra" loading="lazy">
                 </div>
@@ -45,7 +55,7 @@
             </div>
 
             <!-- Soporte Xtream UI -->
-            <div class="soporte-card" data-categoria="tv">
+            <div class="soporte-card" data-categoria="tv" data-nombre="xtream ui">
                 <div class="soporte-imagen">
                     <img src="../img/soporte/xtream.jpg" alt="Soporte Xtream UI" loading="lazy">
                 </div>
@@ -64,7 +74,7 @@
             </div>
 
             <!-- Soporte Ubuntu Server -->
-            <div class="soporte-card" data-categoria="servidores">
+            <div class="soporte-card" data-categoria="servidores" data-nombre="ubuntu server">
                 <div class="soporte-imagen">
                     <img src="../img/soporte/ubuntu.jpg" alt="Soporte Ubuntu Server" loading="lazy">
                 </div>
@@ -83,7 +93,7 @@
             </div>
 
             <!-- Soporte MikroTik -->
-            <div class="soporte-card" data-categoria="redes">
+            <div class="soporte-card" data-categoria="redes" data-nombre="mikrotik">
                 <div class="soporte-imagen">
                     <img src="../img/soporte/mikrotik.jpg" alt="Soporte MikroTik" loading="lazy">
                 </div>
@@ -102,7 +112,7 @@
             </div>
 
             <!-- Soporte OLTs -->
-            <div class="soporte-card" data-categoria="redes">
+            <div class="soporte-card" data-categoria="redes" data-nombre="olts">
                 <div class="soporte-imagen">
                     <img src="../img/soporte/olt.jpg" alt="Soporte OLTs" loading="lazy">
                 </div>
@@ -121,7 +131,7 @@
             </div>
 
             <!-- Soporte Middleware -->
-            <div class="soporte-card" data-categoria="tv">
+            <div class="soporte-card" data-categoria="tv" data-nombre="middleware">
                 <div class="soporte-imagen">
                     <img src="../img/soporte/middleware.jpg" alt="Soporte Middleware" loading="lazy">
                 </div>
