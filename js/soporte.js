@@ -6,7 +6,12 @@ function filtrarServicios() {
 
     cards.forEach(card => {
         const nombre = card.getAttribute('data-nombre').toUpperCase();
-        if (nombre.includes(filter)) {
+        const categoria = card.getAttribute('data-categoria');
+        const categoriaActiva = document.querySelector('.filtro-btn.active').getAttribute('data-categoria') || 'todos';
+        
+        // Verificar si coincide con búsqueda Y con categoría activa
+        if (nombre.includes(filter) && 
+            (categoriaActiva === 'todos' || categoria === categoriaActiva)) {
             card.style.display = "";
         } else {
             card.style.display = "none";
@@ -23,22 +28,27 @@ function filtrarServiciosPorCategoria(categoria) {
         }
     });
 
+    // También actualizar el atributo data-categoria en los botones
+    document.querySelectorAll('.filtro-btn').forEach(btn => {
+        btn.setAttribute('data-categoria', btn.textContent.toLowerCase().trim());
+    });
+
+    // Aplicar filtro
     const cards = document.querySelectorAll('.soporte-card');
+    const busqueda = document.getElementById('buscador-soporte').value.toUpperCase();
     
-    if (categoria === 'todos') {
-        cards.forEach(card => {
+    cards.forEach(card => {
+        const cardCat = card.getAttribute('data-categoria');
+        const nombre = card.getAttribute('data-nombre').toUpperCase();
+        
+        // Verificar categoría y búsqueda simultáneamente
+        if ((categoria === 'todos' || cardCat === categoria) && 
+            nombre.includes(busqueda)) {
             card.style.display = "";
-        });
-    } else {
-        cards.forEach(card => {
-            const cardCat = card.getAttribute('data-categoria');
-            if (cardCat === categoria) {
-                card.style.display = "";
-            } else {
-                card.style.display = "none";
-            }
-        });
-    }
+        } else {
+            card.style.display = "none";
+        }
+    });
 }
 
 // Función para abrir WhatsApp con mensaje predefinido
@@ -51,5 +61,17 @@ function abrirWhatsApp(servicio) {
 
 // Inicialización
 document.addEventListener('DOMContentLoaded', function() {
-    // Puedes agregar aquí cualquier inicialización necesaria
+    // Configurar eventos para los botones de filtro
+    document.querySelectorAll('.filtro-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const categoria = this.textContent.toLowerCase().trim();
+            filtrarServiciosPorCategoria(categoria);
+        });
+    });
+
+    // Configurar evento para el buscador
+    document.getElementById('buscador-soporte').addEventListener('keyup', filtrarServicios);
+    
+    // Establecer el botón "Todos" como activo por defecto
+    document.querySelector('.filtro-btn.active').setAttribute('data-categoria', 'todos');
 });
