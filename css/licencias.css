@@ -366,6 +366,18 @@ footer p {
         justify-content: center;
     }
 }
+/* Responsive para footer */
+@media (max-width: 768px) {
+    .footer-contacto {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .footer-contacto a {
+        width: 100%;
+        justify-content: center;
+    }
+}
 
 /* Responsive */
 @media (max-width: 768px) {
