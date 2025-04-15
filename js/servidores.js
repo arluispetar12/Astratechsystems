@@ -39,3 +39,16 @@ function filtrarServidores(categoria) {
         });
     }
 }
+
+// Activar el filtro "Todos" al cargar la página
+document.addEventListener('DOMContentLoaded', function() {
+    filtrarServidores('todos');
+    
+    // Agregar funcionalidad a los botones de contacto
+    document.querySelectorAll('.btn-contactar').forEach(btn => {
+        btn.addEventListener('click', function() {
+            // Aquí puedes agregar la lógica para el formulario de contacto
+            alert('Redirigiendo al formulario de contacto...');
+        });
+    });
+});
