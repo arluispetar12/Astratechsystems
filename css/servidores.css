@@ -35,64 +35,90 @@
     margin-bottom: 1.5rem;
 }
 
+.btn-volver {
+    display: inline-block;
+    background-color: #00c3ff;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.btn-volver:hover {
+    background-color: #0099cc;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
 /* Filtros */
-.filtros {
+.filtros-servidores {
     margin-bottom: 2rem;
     background: white;
     padding: 1.5rem;
     border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
 }
 
 .filtro-categorias {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
+    gap: 0.8rem;
     justify-content: center;
 }
 
 .filtro-btn {
     padding: 0.8rem 1.5rem;
-    background-color: #f0f0f0;
+    background-color: #f5f5f5;
     border: none;
-    border-radius: 4px;
+    border-radius: 30px;
     cursor: pointer;
     transition: all 0.3s ease;
     font-weight: 600;
-    text-transform: uppercase;
-    font-size: 0.9rem;
-    letter-spacing: 1px;
+    color: #555;
+    border: 1px solid #ddd;
 }
 
 .filtro-btn:hover {
     background-color: #00c3ff;
     color: white;
+    border-color: #00c3ff;
 }
 
 .filtro-btn.active {
     background-color: #2c3e50;
     color: white;
+    border-color: #2c3e50;
 }
 
-/* Categorías de servidores */
+/* Contenido categorías */
+.categoria-contenido {
+    margin-top: 2rem;
+}
+
 .categoria-servidor {
     margin-bottom: 3rem;
-    padding: 1.5rem;
     background: white;
     border-radius: 8px;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+    padding: 2rem;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
 }
 
 .categoria-servidor h2 {
     color: #2c3e50;
-    margin-bottom: 0.5rem;
     font-size: 1.8rem;
+    margin-bottom: 0.5rem;
     display: flex;
     align-items: center;
-    gap: 0.8rem;
+    gap: 1rem;
 }
 
-.descripcion-categoria {
+.categoria-servidor h2 i {
+    color: #00c3ff;
+}
+
+.categoria-descripcion {
     color: #666;
     margin-bottom: 1.5rem;
     font-size: 1.1rem;
@@ -113,17 +139,20 @@
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
     border: 1px solid #eee;
+    display: flex;
+    flex-direction: column;
 }
 
 .servidor-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
     border-color: #00c3ff;
 }
 
 .servidor-imagen {
     height: 200px;
     overflow: hidden;
+    position: relative;
 }
 
 .servidor-imagen img {
@@ -137,44 +166,111 @@
     transform: scale(1.05);
 }
 
+.servidor-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: #e74c3c;
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
 .servidor-info {
     padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .servidor-info h3 {
     margin: 0 0 1rem 0;
     color: #2c3e50;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
 }
 
-.caracteristicas {
+.servidor-caracteristicas {
     list-style: none;
     margin: 0 0 1.5rem 0;
     padding: 0;
+    flex-grow: 1;
 }
 
-.caracteristicas li {
-    margin-bottom: 0.5rem;
+.servidor-caracteristicas li {
+    margin-bottom: 0.6rem;
     display: flex;
-    align-items: center;
-    gap: 0.5rem;
+    align-items: flex-start;
+    gap: 0.8rem;
     color: #555;
+    font-size: 0.95rem;
 }
 
-.caracteristicas i {
+.servidor-caracteristicas i {
     color: #00c3ff;
-    width: 20px;
+    margin-top: 3px;
+    min-width: 20px;
     text-align: center;
 }
 
-.precio {
-    font-size: 1.5rem;
+.servidor-precio {
+    font-size: 1.6rem;
     font-weight: bold;
     color: #2c3e50;
-    text-align: right;
-    margin-top: 1rem;
-    padding-top: 1rem;
+    text-align: center;
+    margin: 1.5rem 0;
+    padding: 1rem 0;
     border-top: 1px dashed #ddd;
+    border-bottom: 1px dashed #ddd;
+}
+
+.btn-contactar {
+    background-color: #2c3e50;
+    color: white;
+    border: none;
+    padding: 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.btn-contactar:hover {
+    background-color: #00c3ff;
+    transform: translateY(-2px);
+}
+
+/* Footer */
+footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.footer-contacto {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.footer-contacto a {
+    color: #2c3e50;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.footer-contacto a:hover {
+    color: #00c3ff;
+}
+
+.footer-contacto i {
+    font-size: 1.2rem;
 }
 
 /* Responsive */
@@ -189,5 +285,14 @@
     
     .filtro-btn {
         width: 100%;
+    }
+    
+    footer .container {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .footer-contacto {
+        justify-content: center;
     }
 }

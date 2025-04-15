@@ -1,40 +1,51 @@
-// Funcionalidad de filtrado
-function filtrarServidores(categoria) {
-    // Actualizar botones activos
-    document.querySelectorAll('.filtro-btn').forEach(btn => {
-        btn.classList.remove('active');
-        if (btn.textContent.toLowerCase().includes(categoria) || 
-           (categoria === 'todos' && btn.textContent === 'Todos')) {
-            btn.classList.add('active');
-        }
+// Filtrado por categoría
+document.addEventListener('DOMContentLoaded', function() {
+    const filterButtons = document.querySelectorAll('.filtro-btn');
+    
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Remover clase active de todos los botones
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            
+            // Agregar clase active al botón clickeado
+            this.classList.add('active');
+            
+            const categoria = this.getAttribute('data-categoria');
+            filtrarServidores(categoria);
+        });
     });
+});
 
-    const cards = document.querySelectorAll('.servidor-card');
-    const categorias = document.querySelectorAll('.categoria-servidor');
+function filtrarServidores(categoria) {
+    const categoriasServidores = document.querySelectorAll('.categoria-servidor');
+    const cardsServidores = document.querySelectorAll('.servidor-card');
     
     if (categoria === 'todos') {
-        cards.forEach(card => {
-            card.style.display = "";
+        // Mostrar todas las categorías
+        categoriasServidores.forEach(cat => {
+            cat.style.display = 'block';
         });
-        categorias.forEach(cat => {
-            cat.style.display = "";
+        
+        // Mostrar todas las cards
+        cardsServidores.forEach(card => {
+            card.style.display = 'flex';
         });
     } else {
         // Ocultar todas las categorías primero
-        categorias.forEach(cat => {
-            cat.style.display = "none";
+        categoriasServidores.forEach(cat => {
+            cat.style.display = 'none';
         });
         
-        // Mostrar solo la categoría seleccionada
-        document.getElementById(categoria).style.display = "";
+        // Mostrar la categoría seleccionada
+        document.getElementById(categoria).style.display = 'block';
         
-        // Mostrar todos los servidores de esa categoría
-        cards.forEach(card => {
-            const cardCat = card.getAttribute('data-categoria');
-            if (cardCat === categoria) {
-                card.style.display = "";
+        // Filtrar las cards
+        cardsServidores.forEach(card => {
+            const cardCategoria = card.getAttribute('data-categoria');
+            if (cardCategoria === categoria) {
+                card.style.display = 'flex';
             } else {
-                card.style.display = "none";
+                card.style.display = 'none';
             }
         });
     }
