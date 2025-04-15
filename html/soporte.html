@@ -27,10 +27,10 @@
         <div class="filtros-soporte">
             <input type="text" id="buscador-soporte" placeholder="🔍 Buscar servicio..." onkeyup="filtrarServicios()">
             <div class="filtro-categorias">
-                <button class="filtro-btn active" onclick="filtrarServiciosPorCategoria('todos')">Todos</button>
-                <button class="filtro-btn" onclick="filtrarServiciosPorCategoria('tv')">TV</button>
-                <button class="filtro-btn" onclick="filtrarServiciosPorCategoria('servidores')">Servidores</button>
-                <button class="filtro-btn" onclick="filtrarServiciosPorCategoria('redes')">Redes</button>
+                <button class="filtro-btn active" data-categoria="todos" onclick="filtrarServiciosPorCategoria('todos')">Todos</button>
+                <button class="filtro-btn" data-categoria="tv" onclick="filtrarServiciosPorCategoria('tv')">TV</button>
+                <button class="filtro-btn" data-categoria="servidores" onclick="filtrarServiciosPorCategoria('servidores')">Servidores</button>
+                <button class="filtro-btn" data-categoria="redes" onclick="filtrarServiciosPorCategoria('redes')">Redes</button>
             </div>
         </div>
 

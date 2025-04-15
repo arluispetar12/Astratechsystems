@@ -3,15 +3,16 @@ function filtrarServicios() {
     const input = document.getElementById('buscador-soporte');
     const filter = input.value.toUpperCase();
     const cards = document.querySelectorAll('.soporte-card');
+    const categoriaActiva = document.querySelector('.filtro-btn.active').getAttribute('data-categoria') || 'todos';
 
     cards.forEach(card => {
         const nombre = card.getAttribute('data-nombre').toUpperCase();
         const categoria = card.getAttribute('data-categoria');
-        const categoriaActiva = document.querySelector('.filtro-btn.active').getAttribute('data-categoria') || 'todos';
         
-        // Verificar si coincide con búsqueda Y con categoría activa
-        if (nombre.includes(filter) && 
-            (categoriaActiva === 'todos' || categoria === categoriaActiva)) {
+        const coincideBusqueda = nombre.includes(filter);
+        const coincideCategoria = categoriaActiva === 'todos' || categoria === categoriaActiva;
+        
+        if (coincideBusqueda && coincideCategoria) {
             card.style.display = "";
         } else {
             card.style.display = "none";
@@ -23,14 +24,9 @@ function filtrarServiciosPorCategoria(categoria) {
     // Actualizar botones activos
     document.querySelectorAll('.filtro-btn').forEach(btn => {
         btn.classList.remove('active');
-        if (btn.textContent.toLowerCase().includes(categoria) {
+        if (btn.getAttribute('data-categoria') === categoria) {
             btn.classList.add('active');
         }
-    });
-
-    // También actualizar el atributo data-categoria en los botones
-    document.querySelectorAll('.filtro-btn').forEach(btn => {
-        btn.setAttribute('data-categoria', btn.textContent.toLowerCase().trim());
     });
 
     // Aplicar filtro
@@ -41,9 +37,10 @@ function filtrarServiciosPorCategoria(categoria) {
         const cardCat = card.getAttribute('data-categoria');
         const nombre = card.getAttribute('data-nombre').toUpperCase();
         
-        // Verificar categoría y búsqueda simultáneamente
-        if ((categoria === 'todos' || cardCat === categoria) && 
-            nombre.includes(busqueda)) {
+        const coincideCategoria = categoria === 'todos' || cardCat === categoria;
+        const coincideBusqueda = nombre.includes(busqueda);
+        
+        if (coincideCategoria && coincideBusqueda) {
             card.style.display = "";
         } else {
             card.style.display = "none";
@@ -53,7 +50,7 @@ function filtrarServiciosPorCategoria(categoria) {
 
 // Función para abrir WhatsApp con mensaje predefinido
 function abrirWhatsApp(servicio) {
-    const telefono = "573011382447"; // Reemplaza con tu número
+    const telefono = "573011382447";
     const mensaje = `Hola, estoy interesado en el servicio de ${servicio}. ¿Podrían brindarme más información?`;
     const url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
     window.open(url, '_blank');
@@ -64,14 +61,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // Configurar eventos para los botones de filtro
     document.querySelectorAll('.filtro-btn').forEach(btn => {
         btn.addEventListener('click', function() {
-            const categoria = this.textContent.toLowerCase().trim();
+            const categoria = this.getAttribute('data-categoria');
             filtrarServiciosPorCategoria(categoria);
         });
     });
 
     // Configurar evento para el buscador
     document.getElementById('buscador-soporte').addEventListener('keyup', filtrarServicios);
-    
-    // Establecer el botón "Todos" como activo por defecto
-    document.querySelector('.filtro-btn.active').setAttribute('data-categoria', 'todos');
 });
