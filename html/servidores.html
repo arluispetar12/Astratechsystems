@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Montaje de Servidores - Astratech Systems</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/servidores.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <header class="servidores-header">
+        <div class="container">
+            <h1>Servidores Especializados</h1>
+            <p>Soluciones a medida para sistemas IPTV/CATV</p>
+            <a href="../index.html" class="btn-volver"><i class="fas fa-arrow-left"></i> Volver al inicio</a>
+        </div>
+    </header>
+
+    <section class="servidores-especializados container">
+        <div class="filtros">
+            <div class="filtro-categorias">
+                <button class="filtro-btn active" onclick="filtrarServidores('todos')">Todos</button>
+                <button class="filtro-btn" onclick="filtrarServidores('lnb')">LNB</button>
+                <button class="filtro-btn" onclick="filtrarServidores('antena')">Antena</button>
+                <button class="filtro-btn" onclick="filtrarServidores('tbs')">Tarjeta TBS</button>
+            </div>
+        </div>
+
+        <!-- Servidores LNB -->
+        <div class="categoria-servidor" id="lnb">
+            <h2><i class="fas fa-satellite-dish"></i> Servidores LNB</h2>
+            <p class="descripcion-categoria">Sistemas optimizados para recepción satelital con LNB</p>
+            
+            <div class="grid-servidores">
+                <!-- Servidor 1 -->
+                <div class="servidor-card" data-categoria="lnb">
+                    <div class="servidor-imagen">
+                        <img src="https://images.unsplash.com/photo-1604977047416-8b59b6f02d2a" alt="Servidor LNB Pro" loading="lazy">
+                    </div>
+                    <div class="servidor-info">
+                        <h3>LNB Pro Server</h3>
+                        <ul class="caracteristicas">
+                            <li><i class="fas fa-microchip"></i> Procesador: Intel i5 10ma Gen</li>
+                            <li><i class="fas fa-memory"></i> RAM: 16GB DDR4</li>
+                            <li><i class="fas fa-hdd"></i> Almacenamiento: 2TB SSD + 4TB HDD</li>
+                            <li><i class="fas fa-network-wired"></i> Conexiones: 4x LNB In, 1Gbps LAN</li>
+                            <li><i class="fas fa-tachometer-alt"></i> Canales simultáneos: 50+</li>
+                        </ul>
+                        <div class="precio">$1,200 USD</div>
+                    </div>
+                </div>
+
+                <!-- Servidor 2 -->
+                <div class="servidor-card" data-categoria="lnb">
+                    <div class="servidor-imagen">
+                        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31" alt="Servidor LNB Lite" loading="lazy">
+                    </div>
+                    <div class="servidor-info">
+                        <h3>LNB Lite Server</h3>
+                        <ul class="caracteristicas">
+                            <li><i class="fas fa-microchip"></i> Procesador: Intel i3 10ma Gen</li>
+                            <li><i class="fas fa-memory"></i> RAM: 8GB DDR4</li>
+                            <li><i class="fas fa-hdd"></i> Almacenamiento: 1TB SSD + 2TB HDD</li>
+                            <li><i class="fas fa-network-wired"></i> Conexiones: 2x LNB In, 1Gbps LAN</li>
+                            <li><i class="fas fa-tachometer-alt"></i> Canales simultáneos: 25+</li>
+                        </ul>
+                        <div class="precio">$850 USD</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Servidores Antena -->
+        <div class="categoria-servidor" id="antena">
+            <h2><i class="fas fa-broadcast-tower"></i> Servidores Antena</h2>
+            <p class="descripcion-categoria">Sistemas para recepción de señal terrestre</p>
+            
+            <div class="grid-servidores">
+                <!-- Servidor 1 -->
+                <div class="servidor-card" data-categoria="antena">
+                    <div class="servidor-imagen">
+                        <img src="https://images.unsplash.com/photo-1591488320449-011701bb6704" alt="Antena Master Server" loading="lazy">
+                    </div>
+                    <div class="servidor-info">
+                        <h3>Antena Master Server</h3>
+                        <ul class="caracteristicas">
+                            <li><i class="fas fa-microchip"></i> Procesador: AMD Ryzen 7</li>
+                            <li><i class="fas fa-memory"></i> RAM: 32GB DDR4</li>
+                            <li><i class="fas fa-hdd"></i> Almacenamiento: 4TB NVMe</li>
+                            <li><i class="fas fa-network-wired"></i> Conexiones: 8x Antena In, 2.5Gbps LAN</li>
+                            <li><i class="fas fa-tachometer-alt"></i> Canales simultáneos: 100+</li>
+                        </ul>
+                        <div class="precio">$2,500 USD</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Servidores Tarjeta TBS -->
+        <div class="categoria-servidor" id="tbs">
+            <h2><i class="fas fa-ethernet"></i> Servidores con Tarjeta TBS</h2>
+            <p class="descripcion-categoria">Sistemas profesionales con tarjetas TBS para gestión avanzada</p>
+            
+            <div class="grid-servidores">
+                <!-- Servidor 1 -->
+                <div class="servidor-card" data-categoria="tbs">
+                    <div class="servidor-imagen">
+                        <img src="https://images.unsplash.com/photo-1597852074816-d933c7d2b988" alt="TBS Pro Server" loading="lazy">
+                    </div>
+                    <div class="servidor-info">
+                        <h3>TBS Pro Server</h3>
+                        <ul class="caracteristicas">
+                            <li><i class="fas fa-microchip"></i> Procesador: Intel Xeon E-2236</li>
+                            <li><i class="fas fa-memory"></i> RAM: 32GB ECC DDR4</li>
+                            <li><i class="fas fa-hdd"></i> Almacenamiento: 2x 2TB SSD RAID 1</li>
+                            <li><i class="fas fa-network-wired"></i> Conexiones: TBS 6908, 10Gbps LAN</li>
+                            <li><i class="fas fa-tachometer-alt"></i> Canales simultáneos: 200+</li>
+                            <li><i class="fas fa-satellite"></i> Soporte: DVB-S2/S2X, 8 demoduladores</li>
+                        </ul>
+                        <div class="precio">$3,200 USD</div>
+                    </div>
+                </div>
+
+                <!-- Servidor 2 -->
+                <div class="servidor-card" data-categoria="tbs">
+                    <div class="servidor-imagen">
+                        <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3" alt="TBS Enterprise Server" loading="lazy">
+                    </div>
+                    <div class="servidor-info">
+                        <h3>TBS Enterprise Server</h3>
+                        <ul class="caracteristicas">
+                            <li><i class="fas fa-microchip"></i> Procesador: Dual Xeon Silver 4210</li>
+                            <li><i class="fas fa-memory"></i> RAM: 64GB ECC DDR4</li>
+                            <li><i class="fas fa-hdd"></i> Almacenamiento: 4x 4TB SSD RAID 10</li>
+                            <li><i class="fas fa-network-wired"></i> Conexiones: 2x TBS 6908, 10Gbps LAN</li>
+                            <li><i class="fas fa-tachometer-alt"></i> Canales simultáneos: 500+</li>
+                            <li><i class="fas fa-satellite"></i> Soporte: DVB-S2/S2X, 16 demoduladores</li>
+                        </ul>
+                        <div class="precio">$5,800 USD</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Astratech Systems. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="../js/servidores.js"></script>
+</body>
+</html>
