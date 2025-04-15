@@ -1,7 +1,19 @@
+:root {
+    --color-primario: #2c3e50;
+    --color-secundario: #3498db;
+    --color-terciario: #ecf0f1;
+    --color-texto: #333;
+    --color-blanco: #fff;
+    --color-destacado: #00c3ff;
+    --color-borde: #ddd;
+    --sombra: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --transicion: all 0.3s ease;
+}
+
 /* Estilos generales */
 .servidores-header {
-    background: linear-gradient(135deg, #2c3e50, #1a252f);
-    color: white;
+    background: linear-gradient(135deg, var(--color-primario), #1a252f);
+    color: var(--color-blanco);
     padding: 3rem 0;
     text-align: center;
     position: relative;
@@ -28,37 +40,39 @@
 .servidores-header h1 {
     font-size: 2.5rem;
     margin-bottom: 0.5rem;
+    color: var(--color-blanco);
 }
 
 .servidores-header p {
     font-size: 1.2rem;
     margin-bottom: 1.5rem;
+    color: var(--color-terciario);
 }
 
 .btn-volver {
     display: inline-block;
-    background-color: #00c3ff;
-    color: white;
+    background-color: var(--color-destacado);
+    color: var(--color-blanco);
     padding: 0.8rem 1.5rem;
     border-radius: 4px;
     text-decoration: none;
-    transition: all 0.3s ease;
+    transition: var(--transicion);
     font-weight: 600;
 }
 
 .btn-volver:hover {
-    background-color: #0099cc;
+    background-color: var(--color-secundario);
     transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--sombra);
 }
 
 /* Filtros */
 .filtros {
     margin-bottom: 2rem;
-    background: white;
+    background: var(--color-blanco);
     padding: 1.5rem;
     border-radius: 8px;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+    box-shadow: var(--sombra);
 }
 
 .filtro-categorias {
@@ -70,39 +84,39 @@
 
 .filtro-btn {
     padding: 0.8rem 1.5rem;
-    background-color: #f5f5f5;
+    background-color: var(--color-terciario);
     border: none;
     border-radius: 30px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: var(--transicion);
     font-weight: 600;
-    color: #555;
-    border: 1px solid #ddd;
+    color: var(--color-texto);
+    border: 1px solid var(--color-borde);
 }
 
 .filtro-btn:hover {
-    background-color: #00c3ff;
-    color: white;
-    border-color: #00c3ff;
+    background-color: var(--color-destacado);
+    color: var(--color-blanco);
+    border-color: var(--color-destacado);
 }
 
 .filtro-btn.active {
-    background-color: #2c3e50;
-    color: white;
-    border-color: #2c3e50;
+    background-color: var(--color-primario);
+    color: var(--color-blanco);
+    border-color: var(--color-primario);
 }
 
 /* Contenido categorías */
 .categoria-servidor {
     margin-bottom: 3rem;
-    background: white;
+    background: var(--color-blanco);
     border-radius: 8px;
     padding: 2rem;
-    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
+    box-shadow: var(--sombra);
 }
 
 .categoria-servidor h2 {
-    color: #2c3e50;
+    color: var(--color-primario);
     font-size: 1.8rem;
     margin-bottom: 0.5rem;
     display: flex;
@@ -111,11 +125,12 @@
 }
 
 .categoria-servidor h2 i {
-    color: #00c3ff;
+    color: var(--color-destacado);
 }
 
 .descripcion-categoria {
-    color: #666;
+    color: var(--color-texto);
+    opacity: 0.8;
     margin-bottom: 1.5rem;
     font-size: 1.1rem;
 }
@@ -129,12 +144,12 @@
 }
 
 .servidor-card {
-    background: white;
+    background: var(--color-blanco);
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-    border: 1px solid #eee;
+    box-shadow: var(--sombra);
+    transition: var(--transicion);
+    border: 1px solid var(--color-borde);
     display: flex;
     flex-direction: column;
 }
@@ -142,7 +157,7 @@
 .servidor-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-    border-color: #00c3ff;
+    border-color: var(--color-destacado);
 }
 
 .servidor-imagen {
@@ -171,7 +186,7 @@
 
 .servidor-info h3 {
     margin: 0 0 1rem 0;
-    color: #2c3e50;
+    color: var(--color-primario);
     font-size: 1.4rem;
 }
 
@@ -187,12 +202,12 @@
     display: flex;
     align-items: flex-start;
     gap: 0.8rem;
-    color: #555;
+    color: var(--color-texto);
     font-size: 0.95rem;
 }
 
 .caracteristicas i {
-    color: #00c3ff;
+    color: var(--color-destacado);
     margin-top: 3px;
     min-width: 20px;
     text-align: center;
@@ -201,34 +216,34 @@
 .precio {
     font-size: 1.6rem;
     font-weight: bold;
-    color: #2c3e50;
+    color: var(--color-primario);
     text-align: center;
     margin: 1.5rem 0;
     padding: 1rem 0;
-    border-top: 1px dashed #ddd;
-    border-bottom: 1px dashed #ddd;
+    border-top: 1px dashed var(--color-borde);
+    border-bottom: 1px dashed var(--color-borde);
 }
 
 .btn-contactar {
-    background-color: #2c3e50;
-    color: white;
+    background-color: var(--color-primario);
+    color: var(--color-blanco);
     border: none;
     padding: 0.8rem;
     border-radius: 4px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: var(--transicion);
     font-weight: 600;
     font-size: 1rem;
 }
 
 .btn-contactar:hover {
-    background-color: #00c3ff;
+    background-color: var(--color-destacado);
     transform: translateY(-2px);
 }
 
 /* Footer */
 footer {
-    background: #f5f5f5;
+    background: var(--color-terciario);
     padding: 2rem 0;
     margin-top: 2rem;
 }
@@ -247,16 +262,16 @@ footer .container {
 }
 
 .footer-contacto a {
-    color: #2c3e50;
+    color: var(--color-primario);
     text-decoration: none;
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    transition: all 0.3s ease;
+    transition: var(--transicion);
 }
 
 .footer-contacto a:hover {
-    color: #00c3ff;
+    color: var(--color-destacado);
 }
 
 .footer-contacto i {
