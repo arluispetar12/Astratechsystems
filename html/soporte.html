@@ -38,7 +38,9 @@
                         <li><i class="fas fa-check"></i> Actualizaciones</li>
                         <li><i class="fas fa-check"></i> Optimización de performance</li>
                     </ul>
-                    <button class="btn-soporte">Solicitar Soporte</button>
+                    <button class="btn-soporte" onclick="abrirWhatsApp('Soporte para Astra')">
+                        <i class="fab fa-whatsapp"></i> Contactar por WhatsApp
+                    </button>
                 </div>
             </div>
 
@@ -55,7 +57,9 @@
                         <li><i class="fas fa-check"></i> Problemas de conexión</li>
                         <li><i class="fas fa-check"></i> Balanceo de carga</li>
                     </ul>
-                    <button class="btn-soporte">Solicitar Soporte</button>
+                    <button class="btn-soporte" onclick="abrirWhatsApp('Soporte para Xtream UI')">
+                        <i class="fab fa-whatsapp"></i> Contactar por WhatsApp
+                    </button>
                 </div>
             </div>
 
@@ -72,7 +76,9 @@
                         <li><i class="fas fa-check"></i> Optimización de servidores</li>
                         <li><i class="fas fa-check"></i> Resolución de problemas</li>
                     </ul>
-                    <button class="btn-soporte">Solicitar Soporte</button>
+                    <button class="btn-soporte" onclick="abrirWhatsApp('Soporte para Ubuntu Server')">
+                        <i class="fab fa-whatsapp"></i> Contactar por WhatsApp
+                    </button>
                 </div>
             </div>
 
@@ -89,7 +95,9 @@
                         <li><i class="fas fa-check"></i> VPN (PPTP, L2TP, SSTP)</li>
                         <li><i class="fas fa-check"></i> Optimización de redes</li>
                     </ul>
-                    <button class="btn-soporte">Solicitar Soporte</button>
+                    <button class="btn-soporte" onclick="abrirWhatsApp('Soporte para MikroTik')">
+                        <i class="fab fa-whatsapp"></i> Contactar por WhatsApp
+                    </button>
                 </div>
             </div>
 
@@ -106,7 +114,9 @@
                         <li><i class="fas fa-check"></i> Problemas de conectividad</li>
                         <li><i class="fas fa-check"></i> Monitoreo y mantenimiento</li>
                     </ul>
-                    <button class="btn-soporte">Solicitar Soporte</button>
+                    <button class="btn-soporte" onclick="abrirWhatsApp('Soporte para OLTs')">
+                        <i class="fab fa-whatsapp"></i> Contactar por WhatsApp
+                    </button>
                 </div>
             </div>
 
@@ -123,7 +133,9 @@
                         <li><i class="fas fa-check"></i> Configuraciones avanzadas</li>
                         <li><i class="fas fa-check"></i> Problemas de autenticación</li>
                     </ul>
-                    <button class="btn-soporte">Solicitar Soporte</button>
+                    <button class="btn-soporte" onclick="abrirWhatsApp('Soporte para Middleware')">
+                        <i class="fab fa-whatsapp"></i> Contactar por WhatsApp
+                    </button>
                 </div>
             </div>
         </div>
@@ -151,12 +163,21 @@
         <div class="container">
             <p>&copy; 2025 Astratech Systems. Todos los derechos reservados.</p>
             <div class="footer-contacto">
-                <a href="https://wa.me/3011382447" target="_blank"><i class="fab fa-whatsapp"></i> Soporte por WhatsApp</a>
+                <a href="https://wa.me/573011382447" target="_blank"><i class="fab fa-whatsapp"></i> Soporte por WhatsApp</a>
                 <a href="mailto:soporte@astratech.com"><i class="fas fa-envelope"></i> Soporte por Email</a>
             </div>
         </div>
     </footer>
 
     <script src="../js/soporte.js"></script>
+    <script>
+        // Función para abrir WhatsApp
+        function abrirWhatsApp(servicio) {
+            const numero = "573011382447"; // Reemplaza con tu número
+            const mensaje = `Hola, necesito soporte técnico para: ${servicio}\n\nPor favor proporcióneme más detalles sobre el problema:`;
+            const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
+            window.open(url, '_blank');
+        }
+    </script>
 </body>
 </html>
