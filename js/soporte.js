@@ -68,4 +68,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Configurar evento para el buscador
     document.getElementById('buscador-soporte').addEventListener('keyup', filtrarServicios);
+
+    // Configurar eventos para los botones de WhatsApp
+    document.querySelectorAll('.btn-soporte').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const servicio = this.closest('.soporte-card').querySelector('h3').textContent;
+            abrirWhatsApp(servicio);
+        });
+    });
 });

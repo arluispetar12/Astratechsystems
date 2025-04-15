@@ -1,39 +1,80 @@
-/* Estilos generales heredados del theme principal */
+/* Estilos generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Header */
 .soporte-header {
-    background: linear-gradient(135deg, #1a2a6c, #b21f1f, #ecca82);
+    background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
     color: white;
-    padding: 3rem 0;
+    padding: 4rem 0;
     text-align: center;
     margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
 }
 
 .soporte-header h1 {
     font-size: 2.5rem;
     margin-bottom: 1rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .soporte-header p {
     font-size: 1.2rem;
     opacity: 0.9;
+    max-width: 800px;
+    margin: 0 auto 1.5rem;
 }
 
+/* Botón Volver al inicio */
 .btn-volver {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
     background: rgba(255, 255, 255, 0.2);
     color: white;
-    padding: 0.8rem 1.5rem;
+    padding: 0.8rem 1.8rem;
     border-radius: 50px;
-    margin-top: 1.5rem;
+    margin-top: 1rem;
     text-decoration: none;
     transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    font-weight: 500;
+    font-size: 1rem;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
 .btn-volver:hover {
     background: rgba(255, 255, 255, 0.3);
     transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* Estilos para la sección de servicios */
+.btn-volver i {
+    font-size: 0.9rem;
+}
+
+/* Sección de servicios */
 .servicios-soporte {
     padding: 2rem 0;
 }
@@ -47,6 +88,10 @@
     font-size: 2rem;
     color: #1a2a6c;
     margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
 }
 
 .intro-soporte p {
@@ -73,6 +118,13 @@
     max-width: 500px;
     margin: 0 auto;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+#buscador-soporte:focus {
+    outline: none;
+    border-color: #1a2a6c;
+    box-shadow: 0 2px 15px rgba(26, 42, 108, 0.1);
 }
 
 .filtro-categorias {
@@ -227,6 +279,23 @@
 }
 
 /* Footer */
+footer {
+    background: #1a2a6c;
+    color: white;
+    padding: 2rem 0;
+    text-align: center;
+}
+
+footer .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+footer p {
+    margin-bottom: 1rem;
+}
+
 .footer-contacto {
     display: flex;
     gap: 1.5rem;
@@ -235,7 +304,7 @@
 }
 
 .footer-contacto a {
-    color: #1a2a6c;
+    color: white;
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -244,17 +313,30 @@
 }
 
 .footer-contacto a:hover {
-    color: #b21f1f;
+    color: #fdbb2d;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
-    .grid-soporte {
-        grid-template-columns: 1fr;
+    .soporte-header {
+        padding: 3rem 0;
     }
     
     .soporte-header h1 {
         font-size: 2rem;
+    }
+    
+    .soporte-header p {
+        font-size: 1rem;
+    }
+    
+    .btn-volver {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.9rem;
+    }
+    
+    .grid-soporte {
+        grid-template-columns: 1fr;
     }
     
     .info-soporte {
@@ -266,35 +348,4 @@
         align-items: center;
         gap: 0.5rem;
     }
-}
-
-/* Estilo del botón Volver al inicio (igual que en canales) */
-.btn-volver {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    background: rgba(255, 255, 255, 0.2);
-    color: white;
-    padding: 0.8rem 1.5rem;
-    border-radius: 50px;
-    margin-top: 1.5rem;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    font-weight: 500;
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-}
-
-.btn-volver:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Asegurar que el header tenga el mismo gradiente que canales */
-.soporte-header {
-    background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
-    /* resto de estilos... */
 }
