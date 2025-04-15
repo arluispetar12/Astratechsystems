@@ -1,39 +1,36 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Efecto para las tarjetas de información
-    const infoCards = document.querySelectorAll('.info-card');
-    
-    infoCards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-5px)';
-            this.style.boxShadow = '0 10px 20px rgba(0,0,0,0.1)';
-        });
-        
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = '';
-            this.style.boxShadow = '';
-        });
-    });
+// Función para abrir WhatsApp con un mensaje predeterminado
+function abrirWhatsApp(servicio) {
+    const telefono = "573011382447"; // Reemplaza con tu número de WhatsApp
+    const mensaje = `Hola, estoy interesado en el servicio de ${servicio}. ¿Podrían brindarme más información?`;
+    const url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
+    window.open(url, '_blank');
+}
 
-    // Efecto hover para las tarjetas de servicio
-    const soporteCards = document.querySelectorAll('.soporte-card');
+// Filtrado de categorías (si implementas filtros más adelante)
+document.addEventListener('DOMContentLoaded', function() {
+    // Puedes añadir aquí funcionalidad de filtrado si lo necesitas
+    console.log("Página de soporte cargada correctamente");
     
-    soporteCards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-5px)';
-            this.style.boxShadow = '0 10px 25px rgba(0,0,0,0.15)';
-        });
-        
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = '';
-            this.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
+    // Ejemplo de cómo podrías implementar filtros:
+    /*
+    const filtros = document.querySelectorAll('.filtro-categoria');
+    filtros.forEach(filtro => {
+        filtro.addEventListener('click', function() {
+            const categoria = this.dataset.categoria;
+            filtrarServicios(categoria);
         });
     });
+    */
 });
 
-// Función global para abrir WhatsApp
-function abrirWhatsApp(servicio) {
-    const numero = "573011382447"; // Número de WhatsApp
-    const mensaje = `Hola, necesito soporte técnico para: ${servicio}\n\nPor favor proporcióneme más detalles sobre el problema:`;
-    const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
-    window.open(url, '_blank');
+// Función de ejemplo para filtrar servicios
+function filtrarServicios(categoria) {
+    const cards = document.querySelectorAll('.soporte-card');
+    cards.forEach(card => {
+        if (categoria === 'todos' || card.dataset.categoria === categoria) {
+            card.style.display = 'block';
+        } else {
+            card.style.display = 'none';
+        }
+    });
 }
