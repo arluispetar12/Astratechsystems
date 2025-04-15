@@ -5,7 +5,10 @@
     --color-terciario: #ecf0f1;
     --color-texto: #333;
     --color-blanco: #fff;
+    --color-whatsapp: #25D366;
+    --color-email: #D44638;
     --sombra: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --sombra-hover: 0 10px 20px rgba(0, 0, 0, 0.15);
     --transicion: all 0.3s ease;
 }
 
@@ -186,24 +189,118 @@ section h2::after {
     text-align: center;
 }
 
-#contacto ul {
-    list-style: none;
-    margin-top: 2rem;
-}
-
-#contacto li {
-    margin-bottom: 1rem;
+.contacto-subtitulo {
     font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 2.5rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-#contacto a {
-    color: var(--color-secundario);
+.contacto-info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.contacto-item {
+    flex: 1;
+    min-width: 300px;
+}
+
+/* Estilos mejorados para los botones de contacto */
+.btn-contacto {
+    display: flex;
+    align-items: center;
+    padding: 1.5rem;
+    border-radius: 12px;
     text-decoration: none;
     transition: var(--transicion);
+    box-shadow: var(--sombra);
+    position: relative;
+    overflow: hidden;
+    border: none;
+    text-align: left;
+    background: var(--color-blanco);
+    color: var(--color-texto);
 }
 
-#contacto a:hover {
-    text-decoration: underline;
+.btn-contacto:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--sombra-hover);
+}
+
+.btn-icono {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+    font-size: 1.5rem;
+    color: var(--color-blanco);
+    flex-shrink: 0;
+}
+
+.btn-contenido {
+    flex-grow: 1;
+    text-align: left;
+}
+
+.btn-titulo {
+    display: block;
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 0.3rem;
+}
+
+.btn-descripcion {
+    display: block;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.btn-flecha {
+    margin-left: 1rem;
+    opacity: 0;
+    transition: var(--transicion);
+    color: #999;
+}
+
+.btn-contacto:hover .btn-flecha {
+    opacity: 1;
+    transform: translateX(5px);
+}
+
+/* Estilos específicos para WhatsApp */
+.btn-whatsapp {
+    border-left: 4px solid var(--color-whatsapp);
+}
+
+.btn-whatsapp .btn-icono {
+    background-color: var(--color-whatsapp);
+}
+
+.btn-whatsapp:hover {
+    background-color: rgba(37, 211, 102, 0.05);
+}
+
+/* Estilos específicos para Email */
+.btn-email {
+    border-left: 4px solid var(--color-email);
+}
+
+.btn-email .btn-icono {
+    background-color: var(--color-email);
+}
+
+.btn-email:hover {
+    background-color: rgba(212, 70, 56, 0.05);
 }
 
 /* Pie de página */
@@ -238,5 +335,13 @@ footer {
     
     .servicios {
         grid-template-columns: 1fr;
+    }
+    
+    .contacto-item {
+        min-width: 100%;
+    }
+    
+    .btn-contacto {
+        padding: 1.2rem;
     }
 }
