@@ -12,214 +12,202 @@
 
     <header class="servidores-header">
         <div class="container">
-            <h1>Servidores Especializados</h1>
-            <p>Soluciones técnicas profesionales para sistemas IPTV/CATV</p>
+            <h1>Equipos Especializados</h1>
+            <p>Soluciones profesionales para sistemas IPTV/CATV</p>
             <a href="../index.html" class="btn-volver"><i class="fas fa-arrow-left"></i> Volver al inicio</a>
         </div>
     </header>
 
     <section class="servidores-especializados container">
-        <!-- Filtros por categoría -->
-        <div class="filtros-servidores">
-            <div class="filtro-categorias">
-                <button class="filtro-btn active" data-categoria="todos">Todos</button>
-                <button class="filtro-btn" data-categoria="servidores">Servidores</button>
-                <button class="filtro-btn" data-categoria="tbs">Tarjetas TBS</button>
-                <button class="filtro-btn" data-categoria="lnb">LNB</button>
-                <button class="filtro-btn" data-categoria="antenas">Antenas</button>
+        <!-- Navegación por categorías -->
+        <nav class="categorias-nav">
+            <ul>
+                <li><a href="#servidores" class="active"><i class="fas fa-server"></i> Servidores</a></li>
+                <li><a href="#tbs"><i class="fas fa-ethernet"></i> Tarjetas TBS</a></li>
+                <li><a href="#lnb"><i class="fas fa-satellite-dish"></i> LNB</a></li>
+                <li><a href="#antenas"><i class="fas fa-broadcast-tower"></i> Antenas</a></li>
+            </ul>
+        </nav>
+
+        <!-- Sección Servidores -->
+        <div id="servidores" class="categoria-productos">
+            <h2><i class="fas fa-server"></i> Servidores IPTV</h2>
+            <p class="descripcion-categoria">Configuraciones profesionales para distribución de contenido</p>
+            
+            <div class="grid-productos">
+                <!-- Servidor 1 -->
+                <div class="producto-card">
+                    <div class="producto-imagen">
+                        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31" alt="Servidor IPTV Pro" loading="lazy">
+                    </div>
+                    <div class="producto-info">
+                        <h3>Servidor Xtream Pro</h3>
+                        <ul class="caracteristicas">
+                            <li><i class="fas fa-microchip"></i> Procesador: Intel Xeon 6 núcleos</li>
+                            <li><i class="fas fa-memory"></i> Memoria: 32GB DDR4</li>
+                            <li><i class="fas fa-hdd"></i> Almacenamiento: 2TB SSD + 4TB HDD</li>
+                            <li><i class="fas fa-network-wired"></i> Red: Dual Gigabit</li>
+                            <li><i class="fas fa-tv"></i> Soporte: Xtream UI, Flussonic</li>
+                        </ul>
+                        <div class="precio">$2,499 USD</div>
+                        <button class="btn-consultar">Consultar</button>
+                    </div>
+                </div>
+
+                <!-- Servidor 2 -->
+                <div class="producto-card">
+                    <div class="producto-imagen">
+                        <img src="https://images.unsplash.com/photo-1597852074816-d933c7d2b988" alt="Servidor Enterprise" loading="lazy">
+                    </div>
+                    <div class="producto-info">
+                        <h3>Servidor Enterprise</h3>
+                        <ul class="caracteristicas">
+                            <li><i class="fas fa-microchip"></i> Procesador: Dual Xeon 16 núcleos</li>
+                            <li><i class="fas fa-memory"></i> Memoria: 64GB DDR4 ECC</li>
+                            <li><i class="fas fa-hdd"></i> Almacenamiento: 4x 2TB SSD RAID 10</li>
+                            <li><i class="fas fa-network-wired"></i> Red: 10Gbps SFP+</li>
+                            <li><i class="fas fa-tv"></i> Soporte: Cluster, Load Balancing</li>
+                        </ul>
+                        <div class="precio">$4,999 USD</div>
+                        <button class="btn-consultar">Consultar</button>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- Contenido de cada categoría -->
-        <div class="categoria-contenido">
-            <!-- Servidores IPTV -->
-            <div class="categoria-servidor" id="servidores">
-                <h2><i class="fas fa-server"></i> Servidores IPTV</h2>
-                <p class="categoria-descripcion">Soluciones completas para distribución de contenido IPTV profesional</p>
-                
-                <div class="grid-servidores">
-                    <!-- Servidor 1 -->
-                    <div class="servidor-card" data-categoria="servidores">
-                        <div class="servidor-imagen">
-                            <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31" alt="Servidor IPTV Pro" loading="lazy">
-                            <div class="servidor-badge">Recomendado</div>
-                        </div>
-                        <div class="servidor-info">
-                            <h3>XTREAM PRO SERVER</h3>
-                            <ul class="servidor-caracteristicas">
-                                <li><i class="fas fa-microchip"></i> Intel Xeon E-2236 (6C/12T)</li>
-                                <li><i class="fas fa-memory"></i> 32GB DDR4 ECC</li>
-                                <li><i class="fas fa-hdd"></i> 2x 1TB NVMe SSD (RAID 1)</li>
-                                <li><i class="fas fa-network-wired"></i> Dual 10Gbps SFP+</li>
-                                <li><i class="fas fa-users"></i> 1000+ conexiones</li>
-                                <li><i class="fas fa-tv"></i> Soporte Xtream UI, Flussonic, Ministra</li>
-                            </ul>
-                            <div class="servidor-precio">$2,799 USD</div>
-                        
-                        </div>
+        <!-- Sección Tarjetas TBS -->
+        <div id="tbs" class="categoria-productos">
+            <h2><i class="fas fa-ethernet"></i> Tarjetas TBS</h2>
+            <p class="descripcion-categoria">Sintonizadoras profesionales para recepción satelital</p>
+            
+            <div class="grid-productos">
+                <!-- Tarjeta 1 -->
+                <div class="producto-card">
+                    <div class="producto-imagen">
+                        <img src="https://www.tbsdtv.com/images/products/tbs6908_xlarge.jpg" alt="TBS 6908" loading="lazy">
                     </div>
+                    <div class="producto-info">
+                        <h3>TBS 6908 Octo Tuner</h3>
+                        <ul class="caracteristicas">
+                            <li><i class="fas fa-satellite"></i> 8 sintonizadores independientes</li>
+                            <li><i class="fas fa-tachometer-alt"></i> Soporte DVB-S2/S2X</li>
+                            <li><i class="fas fa-microchip"></i> Chipset Montage M88DS3103</li>
+                            <li><i class="fas fa-plug"></i> Interface: PCIe x8</li>
+                            <li><i class="fas fa-code"></i> Compatible: Linux/Windows</li>
+                        </ul>
+                        <div class="precio">$649 USD</div>
+                        <button class="btn-consultar">Consultar</button>
+                    </div>
+                </div>
 
-                    <!-- Servidor 2 -->
-                    <div class="servidor-card" data-categoria="servidores">
-                        <div class="servidor-imagen">
-                            <img src="https://images.unsplash.com/photo-1597852074816-d933c7d2b988" alt="Servidor IPTV Enterprise" loading="lazy">
-                        </div>
-                        <div class="servidor-info">
-                            <h3>ENTERPRISE SERVER</h3>
-                            <ul class="servidor-caracteristicas">
-                                <li><i class="fas fa-microchip"></i> Dual Xeon Silver 4210 (20C/40T)</li>
-                                <li><i class="fas fa-memory"></i> 64GB DDR4 ECC</li>
-                                <li><i class="fas fa-hdd"></i> 4x 2TB SSD (RAID 10)</li>
-                                <li><i class="fas fa-network-wired"></i> Quad 10Gbps</li>
-                                <li><i class="fas fa-users"></i> 5000+ conexiones</li>
-                                <li><i class="fas fa-tv"></i> Cluster ready, Load Balancing</li>
-                            </ul>
-                            <div class="servidor-precio">$5,999 USD</div>
-                        
-                        </div>
+                <!-- Tarjeta 2 -->
+                <div class="producto-card">
+                    <div class="producto-imagen">
+                        <img src="https://www.tbsdtv.com/images/products/tbs6903_xlarge.jpg" alt="TBS 6903" loading="lazy">
+                    </div>
+                    <div class="producto-info">
+                        <h3>TBS 6903 Quad Tuner</h3>
+                        <ul class="caracteristicas">
+                            <li><i class="fas fa-satellite"></i> 4 sintonizadores independientes</li>
+                            <li><i class="fas fa-tachometer-alt"></i> Soporte DVB-S2/S2X</li>
+                            <li><i class="fas fa-microchip"></i> Chipset Montage M88DS3103</li>
+                            <li><i class="fas fa-plug"></i> Interface: PCIe x4</li>
+                            <li><i class="fas fa-bolt"></i> Bajo consumo energético</li>
+                        </ul>
+                        <div class="precio">$399 USD</div>
+                        <button class="btn-consultar">Consultar</button>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- Tarjetas TBS -->
-            <div class="categoria-servidor" id="tbs">
-                <h2><i class="fas fa-ethernet"></i> Tarjetas TBS</h2>
-                <p class="categoria-descripcion">Sintonizadoras profesionales para recepción satelital</p>
-                
-                <div class="grid-servidores">
-                    <!-- Tarjeta 1 -->
-                    <div class="servidor-card" data-categoria="tbs">
-                        <div class="servidor-imagen">
-                            <img src="https://www.tbsdtv.com/images/products/tbs6908_xlarge.jpg" alt="TBS 6908" loading="lazy">
-                        </div>
-                        <div class="servidor-info">
-                            <h3>TBS 6908 Octo Tuner</h3>
-                            <ul class="servidor-caracteristicas">
-                                <li><i class="fas fa-satellite"></i> 8 sintonizadores DVB-S2 independientes</li>
-                                <li><i class="fas fa-tachometer-alt"></i> Hasta 8 transponders simultáneos</li>
-                                <li><i class="fas fa-microchip"></i> Chipset Montage M88DS3103</li>
-                                <li><i class="fas fa-plug"></i> PCIe x8 interface</li>
-                                <li><i class="fas fa-code"></i> Soporte Linux/Windows</li>
-                                <li><i class="fas fa-wifi"></i> Blindaje RF profesional</li>
-                            </ul>
-                            <div class="servidor-precio">$649 USD</div>
-                        
-                        </div>
+        <!-- Sección LNB -->
+        <div id="lnb" class="categoria-productos">
+            <h2><i class="fas fa-satellite-dish"></i> LNB</h2>
+            <p class="descripcion-categoria">Conversores de señal satelital de alto rendimiento</p>
+            
+            <div class="grid-productos">
+                <!-- LNB 1 -->
+                <div class="producto-card">
+                    <div class="producto-imagen">
+                        <img src="https://m.media-amazon.com/images/I/71QY6X4Rg9L._AC_UF1000,1000_QL80_.jpg" alt="LNB Twin" loading="lazy">
                     </div>
+                    <div class="producto-info">
+                        <h3>LNB Twin Profesional</h3>
+                        <ul class="caracteristicas">
+                            <li><i class="fas fa-signal"></i> Frecuencia: 10.7-12.75 GHz</li>
+                            <li><i class="fas fa-sliders-h"></i> Noise Figure: 0.1dB</li>
+                            <li><i class="fas fa-plug"></i> 2 salidas independientes</li>
+                            <li><i class="fas fa-bolt"></i> Voltaje: 11-20V</li>
+                            <li><i class="fas fa-shield-alt"></i> Resistente a la intemperie</li>
+                        </ul>
+                        <div class="precio">$49 USD</div>
+                        <button class="btn-consultar">Consultar</button>
+                    </div>
+                </div>
 
-                    <!-- Tarjeta 2 -->
-                    <div class="servidor-card" data-categoria="tbs">
-                        <div class="servidor-imagen">
-                            <img src="https://www.tbsdtv.com/images/products/tbs6903_xlarge.jpg" alt="TBS 6903" loading="lazy">
-                        </div>
-                        <div class="servidor-info">
-                            <h3>TBS 6903 Quad Tuner</h3>
-                            <ul class="servidor-caracteristicas">
-                                <li><i class="fas fa-satellite"></i> 4 sintonizadores DVB-S2 independientes</li>
-                                <li><i class="fas fa-tachometer-alt"></i> Hasta 4 transponders simultáneos</li>
-                                <li><i class="fas fa-microchip"></i> Chipset Montage M88DS3103</li>
-                                <li><i class="fas fa-plug"></i> PCIe x4 interface</li>
-                                <li><i class="fas fa-code"></i> Soporte Linux/Windows</li>
-                                <li><i class="fas fa-bolt"></i> Bajo consumo energético</li>
-                            </ul>
-                            <div class="servidor-precio">$399 USD</div>
-                           
-                        </div>
+                <!-- LNB 2 -->
+                <div class="producto-card">
+                    <div class="producto-imagen">
+                        <img src="https://m.media-amazon.com/images/I/61+Q6RhB9QL._AC_UF1000,1000_QL80_.jpg" alt="LNB Quad" loading="lazy">
+                    </div>
+                    <div class="producto-info">
+                        <h3>LNB Quad Premium</h3>
+                        <ul class="caracteristicas">
+                            <li><i class="fas fa-signal"></i> Frecuencia: 10.7-12.75 GHz</li>
+                            <li><i class="fas fa-sliders-h"></i> Noise Figure: 0.2dB</li>
+                            <li><i class="fas fa-plug"></i> 4 salidas independientes</li>
+                            <li><i class="fas fa-temperature-low"></i> Rango: -40°C a +60°C</li>
+                            <li><i class="fas fa-tint"></i> Protección IP55</li>
+                        </ul>
+                        <div class="precio">$69 USD</div>
+                        <button class="btn-consultar">Consultar</button>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- LNB -->
-            <div class="categoria-servidor" id="lnb">
-                <h2><i class="fas fa-satellite-dish"></i> LNB</h2>
-                <p class="categoria-descripcion">Conversores de señal satelital de alto rendimiento</p>
-                
-                <div class="grid-servidores">
-                    <!-- LNB 1 -->
-                    <div class="servidor-card" data-categoria="lnb">
-                        <div class="servidor-imagen">
-                            <img src="https://m.media-amazon.com/images/I/71QY6X4Rg9L._AC_UF1000,1000_QL80_.jpg" alt="LNB Twin" loading="lazy">
-                        </div>
-                        <div class="servidor-info">
-                            <h3>LNB Twin Profesional</h3>
-                            <ul class="servidor-caracteristicas">
-                                <li><i class="fas fa-signal"></i> Frecuencia: 10.7-12.75 GHz</li>
-                                <li><i class="fas fa-sliders-h"></i> Noise Figure: 0.1dB</li>
-                                <li><i class="fas fa-plug"></i> 2 salidas independientes</li>
-                                <li><i class="fas fa-bolt"></i> Voltaje: 11-20V</li>
-                                <li><i class="fas fa-sun"></i> Protección UV</li>
-                                <li><i class="fas fa-shield-alt"></i> Resistente a la intemperie</li>
-                            </ul>
-                            <div class="servidor-precio">$49 USD</div>
-                 
-                        </div>
+        <!-- Sección Antenas -->
+        <div id="antenas" class="categoria-productos">
+            <h2><i class="fas fa-broadcast-tower"></i> Antenas</h2>
+            <p class="descripcion-categoria">Sistemas de recepción terrestre profesional</p>
+            
+            <div class="grid-productos">
+                <!-- Antena 1 -->
+                <div class="producto-card">
+                    <div class="producto-imagen">
+                        <img src="https://m.media-amazon.com/images/I/71YyQ5w3MkL._AC_UF1000,1000_QL80_.jpg" alt="Antena UHF" loading="lazy">
                     </div>
-
-                    <!-- LNB 2 -->
-                    <div class="servidor-card" data-categoria="lnb">
-                        <div class="servidor-imagen">
-                            <img src="https://m.media-amazon.com/images/I/61+Q6RhB9QL._AC_UF1000,1000_QL80_.jpg" alt="LNB Quad" loading="lazy">
-                        </div>
-                        <div class="servidor-info">
-                            <h3>LNB Quad Premium</h3>
-                            <ul class="servidor-caracteristicas">
-                                <li><i class="fas fa-signal"></i> Frecuencia: 10.7-12.75 GHz</li>
-                                <li><i class="fas fa-sliders-h"></i> Noise Figure: 0.2dB</li>
-                                <li><i class="fas fa-plug"></i> 4 salidas independientes</li>
-                                <li><i class="fas fa-bolt"></i> Voltaje: 11-20V</li>
-                                <li><i class="fas fa-temperature-low"></i> Rango operativo: -40°C a +60°C</li>
-                                <li><i class="fas fa-tint"></i> Protección IP55</li>
-                            </ul>
-                            <div class="servidor-precio">$69 USD</div>
-                        </div>
+                    <div class="producto-info">
+                        <h3>Antena UHF Profesional</h3>
+                        <ul class="caracteristicas">
+                            <li><i class="fas fa-signal"></i> Rango: 470-862 MHz</li>
+                            <li><i class="fas fa-arrows-alt-v"></i> Ganancia: 18dB</li>
+                            <li><i class="fas fa-ruler-combined"></i> 90 elementos</li>
+                            <li><i class="fas fa-weight"></i> Peso: 3.2kg</li>
+                            <li><i class="fas fa-shield-alt"></i> Estructura aluminio aeronáutico</li>
+                        </ul>
+                        <div class="precio">$129 USD</div>
+                        <button class="btn-consultar">Consultar</button>
                     </div>
                 </div>
-            </div>
 
-            <!-- Antenas -->
-            <div class="categoria-servidor" id="antenas">
-                <h2><i class="fas fa-broadcast-tower"></i> Antenas</h2>
-                <p class="categoria-descripcion">Sistemas de recepción terrestre profesional</p>
-                
-                <div class="grid-servidores">
-                    <!-- Antena 1 -->
-                    <div class="servidor-card" data-categoria="antenas">
-                        <div class="servidor-imagen">
-                            <img src="https://m.media-amazon.com/images/I/71YyQ5w3MkL._AC_UF1000,1000_QL80_.jpg" alt="Antena UHF" loading="lazy">
-                        </div>
-                        <div class="servidor-info">
-                            <h3>Antena UHF Profesional</h3>
-                            <ul class="servidor-caracteristicas">
-                                <li><i class="fas fa-signal"></i> Rango: 470-862 MHz</li>
-                                <li><i class="fas fa-arrows-alt-v"></i> Ganancia: 18dB</li>
-                                <li><i class="fas fa-ruler-combined"></i> 90 elementos</li>
-                                <li><i class="fas fa-weight"></i> Peso: 3.2kg</li>
-                                <li><i class="fas fa-ruler"></i> Longitud: 2.8m</li>
-                                <li><i class="fas fa-shield-alt"></i> Estructura aluminio aeronáutico</li>
-                            </ul>
-                            <div class="servidor-precio">$129 USD</div>
-                        
-                        </div>
+                <!-- Antena 2 -->
+                <div class="producto-card">
+                    <div class="producto-imagen">
+                        <img src="https://m.media-amazon.com/images/I/71YyQ5w3MkL._AC_UF1000,1000_QL80_.jpg" alt="Antena VHF/UHF" loading="lazy">
                     </div>
-
-                    <!-- Antena 2 -->
-                    <div class="servidor-card" data-categoria="antenas">
-                        <div class="servidor-imagen">
-                            <img src="https://m.media-amazon.com/images/I/71YyQ5w3MkL._AC_UF1000,1000_QL80_.jpg" alt="Antena VHF/UHF" loading="lazy">
-                        </div>
-                        <div class="servidor-info">
-                            <h3>Antena VHF/UHF Comercial</h3>
-                            <ul class="servidor-caracteristicas">
-                                <li><i class="fas fa-signal"></i> Rango: 174-230 MHz / 470-862 MHz</li>
-                                <li><i class="fas fa-arrows-alt-v"></i> Ganancia: 14dB</li>
-                                <li><i class="fas fa-ruler-combined"></i> 60 elementos</li>
-                                <li><i class="fas fa-weight"></i> Peso: 2.5kg</li>
-                                <li><i class="fas fa-ruler"></i> Longitud: 1.8m</li>
-                                <li><i class="fas fa-bolt"></i> Protección contra rayos</li>
-                            </ul>
-                            <div class="servidor-precio">$89 USD</div>
-                            <button class="btn-contactar">Cotizar instalación</button>
-                        </div>
+                    <div class="producto-info">
+                        <h3>Antena VHF/UHF Comercial</h3>
+                        <ul class="caracteristicas">
+                            <li><i class="fas fa-signal"></i> Rango: 174-862 MHz</li>
+                            <li><i class="fas fa-arrows-alt-v"></i> Ganancia: 14dB</li>
+                            <li><i class="fas fa-ruler-combined"></i> 60 elementos</li>
+                            <li><i class="fas fa-weight"></i> Peso: 2.5kg</li>
+                            <li><i class="fas fa-bolt"></i> Protección contra rayos</li>
+                        </ul>
+                        <div class="precio">$89 USD</div>
+                        <button class="btn-consultar">Consultar</button>
                     </div>
                 </div>
             </div>
