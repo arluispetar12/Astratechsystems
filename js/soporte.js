@@ -1,12 +1,4 @@
-// Función para abrir WhatsApp con un mensaje predeterminado
-function abrirWhatsApp(servicio) {
-    const telefono = "573011382447"; // Reemplaza con tu número de WhatsApp
-    const mensaje = `Hola, necesito soporte técnico para: ${servicio}. ¿Podrían ayudarme?`;
-    const url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
-    window.open(url, '_blank');
-}
-
-// Funcionalidad de búsqueda
+// Funcionalidad de búsqueda y filtrado para soporte
 function filtrarServicios() {
     const input = document.getElementById('buscador-soporte');
     const filter = input.value.toUpperCase();
@@ -22,12 +14,11 @@ function filtrarServicios() {
     });
 }
 
-// Funcionalidad de filtrado por categoría
 function filtrarServiciosPorCategoria(categoria) {
     // Actualizar botones activos
     document.querySelectorAll('.filtro-btn').forEach(btn => {
         btn.classList.remove('active');
-        if (btn.textContent.toLowerCase().includes(categoria)) {
+        if (btn.textContent.toLowerCase().includes(categoria) {
             btn.classList.add('active');
         }
     });
@@ -50,7 +41,15 @@ function filtrarServiciosPorCategoria(categoria) {
     }
 }
 
+// Función para abrir WhatsApp con mensaje predefinido
+function abrirWhatsApp(servicio) {
+    const telefono = "573011382447"; // Reemplaza con tu número
+    const mensaje = `Hola, estoy interesado en el servicio de ${servicio}. ¿Podrían brindarme más información?`;
+    const url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
+    window.open(url, '_blank');
+}
+
 // Inicialización
 document.addEventListener('DOMContentLoaded', function() {
-    console.log("Página de soporte cargada correctamente");
+    // Puedes agregar aquí cualquier inicialización necesaria
 });
