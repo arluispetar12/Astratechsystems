@@ -17,234 +17,50 @@
             <p>Más de 150 canales internacionales en HD y FHD</p>
             <a href="../index.html" class="btn-volver"><i class="fas fa-arrow-left"></i> Volver al inicio</a>
         </div>
-    </header>
 
-    <section class="categorias-canales container">
-        <div class="filtros">
-            <input type="text" id="buscador-canales" placeholder="🔍 Buscar canal..." onkeyup="filtrarCanales()">
-            <div class="filtro-categorias">
-                <button class="filtro-btn active" onclick="filtrarPorCategoria('todas')">Todas</button>
-                <button class="filtro-btn" onclick="filtrarPorCategoria('entretenimiento')">Entretenimiento</button>
-                <button class="filtro-btn" onclick="filtrarPorCategoria('peliculas')">Películas</button>
-                <button class="filtro-btn" onclick="filtrarPorCategoria('deportes')">Deportes</button>
-                <button class="filtro-btn" onclick="filtrarPorCategoria('noticias')">Noticias</button>
-                <button class="filtro-btn" onclick="filtrarPorCategoria('infantiles')">Infantiles</button>
-            </div>
-        </div>
-
-        <!-- Entretenimiento -->
-        <div class="categoria" id="entretenimiento">
-            <h2><i class="fas fa-tv"></i> Entretenimiento</h2>
-            <div class="grid-canales">
-                <!-- Canal 5 -->
-                <div class="canal-card" data-categoria="entretenimiento" data-nombre="canal 5">
-                    <div class="canal-logo">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Canal_5_Mexico_logo_2014.svg/250px-Canal_5_Mexico_logo_2014.svg.png" alt="Canal 5" loading="lazy">
-                    </div>
-                    <div class="canal-info">
-                        <h3>Canal 5</h3>
-                        <p class="calidad"><span class="hd">HD</span> • México</p>
-                    </div>
-                </div>
-                
-                <!-- AXN -->
-                <div class="canal-card" data-categoria="entretenimiento" data-nombre="axn">
-                    <div class="canal-logo">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/AXN_logo_%282015%29.svg/330px-AXN_logo_%282015%29.svg.png" alt="AXN" loading="lazy">
-                    </div>
-                    <div class="canal-info">
-                        <h3>AXN</h3>
-                        <p class="calidad"><span class="hd">HD</span> • Internacional</p>
-                    </div>
-                </div>
-                
-                <!-- Warner Channel -->
-                <div class="canal-card" data-categoria="entretenimiento" data-nombre="warner channel">
-                    <div class="canal-logo">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Warner2018LA.png/250px-Warner2018LA.png" alt="Warner Channel" loading="lazy">
-                    </div>
-                    <div class="canal-info">
-                        <h3>Warner Channel</h3>
-                        <p class="calidad"><span class="hd">HD</span> • Latinoamérica</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Películas -->
-        <div class="categoria" id="peliculas">
-            <h2><i class="fas fa-film"></i> Películas</h2>
-            <div class="grid-canales">
-                <!-- HBO -->
-                <div class="canal-card" data-categoria="peliculas" data-nombre="hbo">
-                    <div class="canal-logo">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/HBO_logo.svg/1200px-HBO_logo.svg.png" alt="HBO" loading="lazy">
-                    </div>
-                    <div class="canal-info">
-                        <h3>HBO</h3>
-                        <p class="calidad"><span class="fhd">FHD</span> • Internacional</p>
-                    </div>
-                </div>
-                
-                <!-- Cinemax -->
-                <div class="canal-card" data-categoria="peliculas" data-nombre="cinemax">
-                    <div class="canal-logo">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Cinemax_%28Yellow%29.svg/263px-Cinemax_%28Yellow%29.svg.png" alt="Cinemax" loading="lazy">
-                    </div>
-                    <div class="canal-info">
-                        <h3>Cinemax</h3>
-                        <p class="calidad"><span class="hd">HD</span> • Internacional</p>
-                    </div>
-                </div>
-                
-                <!-- Space -->
-                <div class="canal-card" data-categoria="peliculas" data-nombre="space">
-                    <div class="canal-logo">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/SpaceLogo.svg/330px-SpaceLogo.svg.png" alt="Space" loading="lazy">
-                    </div>
-                    <div class="canal-info">
-                        <h3>Space</h3>
-                        <p class="calidad"><span class="hd">HD</span> • Latinoamérica</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Deportes -->
-        <div class="categoria" id="deportes">
-            <h2><i class="fas fa-running"></i> Deportes</h2>
-            <div class="grid-canales">
-                <!-- ESPN -->
-                <div class="canal-card" data-categoria="deportes" data-nombre="espn">
-                    <div class="canal-logo">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/ESPN_wordmark.svg/1200px-ESPN_wordmark.svg.png" alt="ESPN" loading="lazy">
-                    </div>
-                    <div class="canal-info">
-                        <h3>ESPN</h3>
-                        <p class="calidad"><span class="fhd">FHD</span> • Internacional</p>
-                    </div>
-                </div>
-                
-                <!-- Fox Sports -->
-                <div class="canal-card" data-categoria="deportes" data-nombre="fox sports">
-                    <div class="canal-logo">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/FOX_Sports_logo.svg/225px-FOX_Sports_logo.svg.png" alt="Fox Sports" loading="lazy">
-                    </div>
-                    <div class="canal-info">
-                        <h3>Fox Sports</h3>
-                        <p class="calidad"><span class="fhd">FHD</span> • Latinoamérica</p>
-                    </div>
-                </div>
-                
-                <!-- TyC Sports -->
-                <div class="canal-card" data-categoria="deportes" data-nombre="tyc sports">
-                    <div class="canal-logo">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/TyC_Sports_logo.svg/500px-TyC_Sports_logo.svg.png" alt="TyC Sports" loading="lazy">
-                    </div>
-                    <div class="canal-info">
-                        <h3>TyC Sports</h3>
-                        <p class="calidad"><span class="hd">HD</span> • Argentina</p>
-                    </div>
-                </div>
-
-                
-
-
-            </div>
-        </div>
-
-
-        <!-- Noticias -->
-        <div class="categoria" id="noticias">
-            <h2><i class="fas fa-newspaper"></i> Noticias</h2>
-            <div class="grid-canales">
-                <!-- CNN -->
-                <div class="canal-card" data-categoria="noticias" data-nombre="cnn">
-                    <div class="canal-logo">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/CNN.svg/1200px-CNN.svg.png" alt="CNN" loading="lazy">
-                    </div>
-                    <div class="canal-info">
-                        <h3>CNN</h3>
-                        <p class="calidad"><span class="fhd">FHD</span> • Internacional</p>
-                    </div>
-                </div>
-                
-                <!-- BBC World -->
-                <div class="canal-card" data-categoria="noticias" data-nombre="bbc world">
-                    <div class="canal-logo">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/BBC_News_2022_%28Alt%29.svg/255px-BBC_News_2022_%28Alt%29.svg.png" alt="BBC World" loading="lazy">
-                    </div>
-                    <div class="canal-info">
-                        <h3>BBC World</h3>
-                        <p class="calidad"><span class="hd">HD</span> • Internacional</p>
-                    </div>
-                </div>
-                
-                <!-- TeleSUR -->
-                <div class="canal-card" data-categoria="noticias" data-nombre="telesur">
-                    <div class="canal-logo">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/TeleSUR.jpg/390px-TeleSUR.jpg" alt="TeleSUR" loading="lazy">
-                    </div>
-                    <div class="canal-info">
-                        <h3>TeleSUR</h3>
-                        <p class="calidad"><span class="hd">HD</span> • Latinoamérica</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-                 <!-- Disney Channel -->
-        <div class="categoria" id="infantiles">
-            <h2><i class="fas fa-child"></i> Infantiles</h2>
-            <div class="grid-canales">
-
-
-                <!-- Disney Channel -->
-                <div class="canal-card" data-categoria="infantiles" data-nombre="disney channel">
-                    <div class="canal-logo">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Disney_Channel_text_logo_%282024%29.svg/330px-Disney_Channel_text_logo_%282024%29.svg.png" alt="Disney Channel" loading="lazy">
-                    </div>
-                    <div class="canal-info">
-                        <h3>Disney Channel</h3>
-                        <p class="calidad"><span class="hd">HD</span> • Latinoamérica</p>
-                    </div>
-                </div>
-                
-                <!-- Nickelodeon -->
-                <div class="canal-card" data-categoria="infantiles" data-nombre="nickelodeon">
-                    <div class="canal-logo">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Nickelodeon_2023_logo_%28outline%29.svg/500px-Nickelodeon_2023_logo_%28outline%29.svg.png" alt="Nickelodeon" loading="lazy">
-                    </div>
-                    <div class="canal-info">
-                        <h3>Nickelodeon</h3>
-                        <p class="calidad"><span class="fhd">FHD</span> • Internacional</p>
-                    </div>
-                </div>
-
-
-                <!-- agregar canales -->
-
-
-            </div>
-        </div>
-
-           <!-- aggregar categorias -->
+       
         
+    </header>
+    <div class="filtros">
+        <input type="text" id="buscador-canales" placeholder="🔍 Buscar canal..." onkeyup="filtrarCanales()">
+        <div class="filtro-categorias">
+            <button class="filtro-btn active" onclick="filtrarPorCategoria('todas')">Todas</button>
+            <button class="filtro-btn" onclick="filtrarPorCategoria('entretenimiento')">Entretenimiento</button>
+            <button class="filtro-btn" onclick="filtrarPorCategoria('peliculas')">Películas</button>
+            <button class="filtro-btn" onclick="filtrarPorCategoria('deportes')">Deportes</button>
+            <button class="filtro-btn" onclick="filtrarPorCategoria('noticias')">Noticias</button>
+            <button class="filtro-btn" onclick="filtrarPorCategoria('infantiles')">Infantiles</button>
+        </div>
+    <section class="categorias-canales container" id="contenedor-categorias">
+        <!-- Las categorías y canales se cargarán dinámicamente aquí -->
+ 
     </section>
-            <div class="carrito-container">
-                <div class="carrito-header">
-                    <h3><i class="fas fa-shopping-cart"></i> Canales Seleccionados</h3>
-                    <span id="contador-carrito">0</span>
-                </div>
-                <div class="carrito-lista" id="lista-carrito">
-                    <p class="carrito-vacio">No has seleccionado ningún canal aún</p>
-                </div>
-                <div class="carrito-acciones">
-                    <button class="btn-limpiar" onclick="limpiarCarrito()">Limpiar</button>
-                    <button class="btn-whatsapp" onclick="enviarWhatsApp()">
-                        <i class="fab fa-whatsapp"></i> Cotizar por WhatsApp
-                    </button>
-                </div>
-            </div>
+
+    
+     <!-- Botón flotante para mostrar/ocultar el carrito -->
+     <div class="carrito-toggle" onclick="toggleCarrito()">
+        <i class="fas fa-shopping-cart"></i>
+        <span id="contador-toggle">0</span>
+    </div>
+
+    <!-- Contenedor del carrito -->
+    <div class="carrito-container" id="carrito-container">
+        <div class="carrito-header">
+            <h3><i class="fas fa-shopping-cart"></i> Canales Seleccionados</h3>
+            <span id="contador-carrito">0</span>
+        </div>
+        <div class="carrito-lista" id="lista-carrito">
+            <p class="carrito-vacio">No has seleccionado ningún canal aún</p>
+        </div>
+        <div class="carrito-acciones">
+            <button class="btn-limpiar" onclick="limpiarCarrito()">Limpiar</button>
+            <button class="btn-whatsapp" onclick="enviarWhatsApp()">
+                <i class="fab fa-whatsapp"></i> Cotizar por WhatsApp
+            </button>
+        </div>
+    </div>
+
+
     <footer>
         <div class="container">
             <p>&copy; 2025 Astratech Systems. Todos los derechos reservados.</p>

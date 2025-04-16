@@ -1,273 +1,170 @@
-// Carrito de canales
-let carrito = [];
+// carrito.js
+document.addEventListener('DOMContentLoaded', function() {
+    // Variables globales
+    let carrito = JSON.parse(localStorage.getItem('carritoCanales')) || [];
 
-// Funcionalidad de búsqueda y filtrado
-function filtrarCanales() {
-    const input = document.getElementById('buscador-canales');
-    const filter = input.value.toUpperCase();
-    const cards = document.querySelectorAll('.canal-card');
+    // Inicializar el carrito
+    actualizarCarrito();
 
-    cards.forEach(card => {
-        const nombre = card.getAttribute('data-nombre').toUpperCase();
-        if (nombre.includes(filter)) {
-            card.style.display = "";
-        } else {
-            card.style.display = "none";
+    // Función para alternar la visibilidad del carrito
+    window.toggleCarrito = function() {
+        const carritoContainer = document.getElementById('carrito-container');
+        carritoContainer.classList.toggle('mostrar');
+    };
+
+    // Cerrar el carrito al hacer clic fuera de él
+    document.addEventListener('click', function(event) {
+        const carritoContainer = document.getElementById('carrito-container');
+        const carritoToggle = document.querySelector('.carrito-toggle');
+        
+        if (!carritoContainer.contains(event.target) && 
+            !carritoToggle.contains(event.target) && 
+            carritoContainer.classList.contains('mostrar')) {
+            carritoContainer.classList.remove('mostrar');
         }
     });
-}
 
-function filtrarPorCategoria(categoria) {
-    // Actualizar botones activos
-    document.querySelectorAll('.filtro-btn').forEach(btn => {
-        btn.classList.remove('active');
-    });
-    
-    // Activar el botón clickeado
-    event.target.classList.add('active');
+    // Función para agregar canales al carrito
+    window.agregarAlCarrito = function(card) {
+        const nombre = card.querySelector('h3').textContent;
+        const calidad = card.querySelector('.calidad').textContent;
+        const categoria = card.getAttribute('data-categoria');
+        
+        const existe = carrito.some(item => item.nombre === nombre);
+        
+        if (!existe) {
+            carrito.push({ nombre, calidad, categoria });
+            localStorage.setItem('carritoCanales', JSON.stringify(carrito));
+            
+            const btn = card.querySelector('.btn-agregar');
+            if (btn) {
+                btn.classList.add('agregado');
+                btn.innerHTML = '<i class="fas fa-check"></i>';
+            }
+            
+            actualizarCarrito();
+            mostrarNotificacion(`"${nombre}" agregado al carrito`);
+        } else {
+            mostrarNotificacion(`"${nombre}" ya está en el carrito`, 'info');
+        }
+    };
 
-    const cards = document.querySelectorAll('.canal-card');
-    
-    if (categoria === 'todas') {
-        cards.forEach(card => {
-            card.style.display = "";
-        });
-        document.querySelectorAll('.categoria').forEach(cat => {
-            cat.style.display = "";
-        });
-    } else {
-        // Ocultar todas las categorías primero
-        document.querySelectorAll('.categoria').forEach(cat => {
-            cat.style.display = "none";
-        });
+    // Actualizar visualización del carrito
+    function actualizarCarrito() {
+        const listaCarrito = document.getElementById('lista-carrito');
+        const contador = document.getElementById('contador-carrito');
+        const contadorToggle = document.getElementById('contador-toggle');
         
-        // Mostrar solo la categoría seleccionada
-        document.getElementById(categoria).style.display = "";
+        contador.textContent = carrito.length;
+        contadorToggle.textContent = carrito.length;
         
-        // Filtrar canales
-        cards.forEach(card => {
-            const cardCat = card.getAttribute('data-categoria');
-            if (cardCat === categoria) {
-                card.style.display = "";
-            } else {
-                card.style.display = "none";
+        if (carrito.length === 0) {
+            listaCarrito.innerHTML = '<p class="carrito-vacio">No has seleccionado ningún canal aún</p>';
+            return;
+        }
+        
+        listaCarrito.innerHTML = '';
+        
+        carrito.forEach((item, index) => {
+            const itemElement = document.createElement('div');
+            itemElement.className = 'item-carrito';
+            itemElement.innerHTML = `
+                <div class="item-info">
+                    <div class="item-details">
+                        <div class="nombre">${item.nombre}</div>
+                        <div class="calidad">${item.calidad}</div>
+                    </div>
+                </div>
+                <button class="btn-eliminar" onclick="eliminarDelCarrito(${index})">
+                    <i class="fas fa-trash-alt"></i>
+                </button>
+            `;
+            listaCarrito.appendChild(itemElement);
+        });
+    }
+
+    // Eliminar item del carrito
+    window.eliminarDelCarrito = function(index) {
+        const nombre = carrito[index].nombre;
+        carrito.splice(index, 1);
+        localStorage.setItem('carritoCanales', JSON.stringify(carrito));
+        actualizarCarrito();
+        
+        const canalCards = document.querySelectorAll('.canal-card');
+        canalCards.forEach(card => {
+            if (card.querySelector('h3').textContent === nombre) {
+                const btn = card.querySelector('.btn-agregar');
+                if (btn) {
+                    btn.classList.remove('agregado');
+                    btn.innerHTML = '<i class="fas fa-plus"></i>';
+                }
             }
         });
-    }
-}
+        
+        mostrarNotificacion(`"${nombre}" eliminado del carrito`);
+    };
 
-// Agregar botones de "Agregar" a cada canal
-document.addEventListener('DOMContentLoaded', function() {
-    const canalCards = document.querySelectorAll('.canal-card');
-    
-    canalCards.forEach(card => {
-        // Crear botón de agregar
-        const btnAgregar = document.createElement('button');
-        btnAgregar.className = 'btn-agregar';
-        btnAgregar.innerHTML = '<i class="fas fa-plus"></i>';
-        btnAgregar.onclick = function() {
-            agregarAlCarrito(card);
-        };
-        card.style.position = 'relative';
-        card.appendChild(btnAgregar);
-    });
-    
-    // Cargar carrito desde localStorage si existe
-    const carritoGuardado = localStorage.getItem('carritoCanales');
-    if (carritoGuardado) {
-        carrito = JSON.parse(carritoGuardado);
-        actualizarCarrito();
-    }
-});
-
-function agregarAlCarrito(card) {
-    const nombre = card.querySelector('h3').textContent;
-    const calidad = card.querySelector('.calidad').textContent;
-    const logo = card.querySelector('img').src;
-    const categoria = card.getAttribute('data-categoria');
-    
-    // Verificar si el canal ya está en el carrito
-    const existe = carrito.some(item => item.nombre === nombre);
-    
-    if (!existe) {
-        carrito.push({
-            nombre,
-            calidad,
-            logo,
-            categoria
-        });
-        
-        // Marcar como agregado
-        const btn = card.querySelector('.btn-agregar');
-        btn.classList.add('agregado');
-        btn.innerHTML = '<i class="fas fa-check"></i>';
-        
-        // Guardar en localStorage
-        localStorage.setItem('carritoCanales', JSON.stringify(carrito));
-        
+    // Limpiar carrito completo
+    window.limpiarCarrito = function() {
+        carrito = [];
+        localStorage.removeItem('carritoCanales');
         actualizarCarrito();
         
-        // Mostrar notificación
-        mostrarNotificacion(`"${nombre}" agregado al carrito`);
-    } else {
-        // Mostrar notificación de que ya está agregado
-        mostrarNotificacion(`"${nombre}" ya está en el carrito`, 'info');
-    }
-}
-
-function actualizarCarrito() {
-    const listaCarrito = document.getElementById('lista-carrito');
-    const contador = document.getElementById('contador-carrito');
-    
-    contador.textContent = carrito.length;
-    
-    if (carrito.length === 0) {
-        listaCarrito.innerHTML = '<p class="carrito-vacio">No has seleccionado ningún canal aún</p>';
-        return;
-    }
-    
-    listaCarrito.innerHTML = '';
-    
-    carrito.forEach((item, index) => {
-        const itemElement = document.createElement('div');
-        itemElement.className = 'item-carrito';
-        itemElement.innerHTML = `
-            <div class="nombre">${item.nombre}</div>
-            <button class="btn-eliminar" onclick="eliminarDelCarrito(${index})">
-                <i class="fas fa-trash-alt"></i>
-            </button>
-        `;
-        listaCarrito.appendChild(itemElement);
-    });
-}
-
-function eliminarDelCarrito(index) {
-    carrito.splice(index, 1);
-    localStorage.setItem('carritoCanales', JSON.stringify(carrito));
-    actualizarCarrito();
-    
-    // Actualizar botones en las tarjetas
-    const canalCards = document.querySelectorAll('.canal-card');
-    canalCards.forEach(card => {
-        const nombre = card.querySelector('h3').textContent;
-        const existe = carrito.some(item => item.nombre === nombre);
-        const btn = card.querySelector('.btn-agregar');
-        
-        if (existe) {
-            btn.classList.add('agregado');
-            btn.innerHTML = '<i class="fas fa-check"></i>';
-        } else {
+        document.querySelectorAll('.btn-agregar').forEach(btn => {
             btn.classList.remove('agregado');
             btn.innerHTML = '<i class="fas fa-plus"></i>';
-        }
-    });
-}
-
-function limpiarCarrito() {
-    carrito = [];
-    localStorage.removeItem('carritoCanales');
-    actualizarCarrito();
-    
-    // Restablecer todos los botones de agregar
-    const btnsAgregar = document.querySelectorAll('.btn-agregar');
-    btnsAgregar.forEach(btn => {
-        btn.classList.remove('agregado');
-        btn.innerHTML = '<i class="fas fa-plus"></i>';
-    });
-    
-    mostrarNotificacion('Carrito vaciado');
-}
-
-function enviarWhatsApp() {
-    if (carrito.length === 0) {
-        mostrarNotificacion('No hay canales seleccionados', 'error');
-        return;
-    }
-    
-    // Crear mensaje
-    let mensaje = '¡Hola! Estoy interesado en cotizar los siguientes canales:\n\n';
-    
-    // Agrupar por categoría
-    const categorias = {};
-    carrito.forEach(item => {
-        if (!categorias[item.categoria]) {
-            categorias[item.categoria] = [];
-        }
-        categorias[item.categoria].push(item);
-    });
-    
-    // Construir mensaje organizado
-    for (const categoria in categorias) {
-        mensaje += `*${categoria.toUpperCase()}*\n`;
-        categorias[categoria].forEach(item => {
-            mensaje += `- ${item.nombre} (${item.calidad})\n`;
         });
-        mensaje += '\n';
-    }
-    
-    mensaje += `Total: ${carrito.length} canales seleccionados\n\n`;
-    mensaje += 'Por favor, envíenme información sobre precios y paquetes disponibles.';
-    
-    // Codificar para URL
-    const mensajeCodificado = encodeURIComponent(mensaje);
-    
-    // Número de WhatsApp (reemplaza con tu número)
-    const numeroWhatsApp = '+573011382447'; // Ejemplo: Argentina +54 9 11 1234-5678
-    
-    // Abrir WhatsApp
-    window.open(`https://wa.me/${numeroWhatsApp}?text=${mensajeCodificado}`, '_blank');
-}
+        
+        mostrarNotificacion('Carrito vaciado');
+    };
 
-function mostrarNotificacion(mensaje, tipo = 'success') {
-    const notificacion = document.createElement('div');
-    notificacion.className = `notificacion ${tipo}`;
-    notificacion.textContent = mensaje;
-    
-    document.body.appendChild(notificacion);
-    
-    setTimeout(() => {
-        notificacion.classList.add('mostrar');
-    }, 10);
-    
-    setTimeout(() => {
-        notificacion.classList.remove('mostrar');
+    // Enviar por WhatsApp
+    window.enviarWhatsApp = function() {
+        if (carrito.length === 0) {
+            mostrarNotificacion('No hay canales seleccionados', 'error');
+            return;
+        }
+        
+        let mensaje = '¡Hola! Estoy interesado en cotizar los siguientes canales:\n\n';
+        const categorias = {};
+        
+        carrito.forEach(item => {
+            if (!categorias[item.categoria]) categorias[item.categoria] = [];
+            categorias[item.categoria].push(item);
+        });
+        
+        for (const categoria in categorias) {
+            mensaje += `*${categoria.toUpperCase()}*\n`;
+            categorias[categoria].forEach(item => {
+                mensaje += `- ${item.nombre} (${item.calidad})\n`;
+            });
+            mensaje += '\n';
+        }
+        
+        mensaje += `Total: ${carrito.length} canales seleccionados\n\n`;
+        mensaje += 'Por favor, envíenme información sobre precios y paquetes disponibles.';
+        
+        const numeroWhatsApp = '+573011382447'; // Reemplaza con tu número
+        window.open(`https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`, '_blank');
+    };
+
+    // Mostrar notificaciones
+    function mostrarNotificacion(mensaje, tipo = 'success') {
+        const notificacion = document.createElement('div');
+        notificacion.className = `notificacion ${tipo}`;
+        notificacion.textContent = mensaje;
+        
+        document.body.appendChild(notificacion);
+        
         setTimeout(() => {
-            document.body.removeChild(notificacion);
-        }, 300);
-    }, 3000);
-}
-
-// Estilos para notificaciones (agregar al CSS)
-document.head.insertAdjacentHTML('beforeend', `
-<style>
-.notificacion {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 12px 24px;
-    border-radius: 4px;
-    color: white;
-    font-weight: bold;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    z-index: 1000;
-}
-
-.notificacion.mostrar {
-    opacity: 1;
-}
-
-.notificacion.success {
-    background-color: #2ecc71;
-}
-
-.notificacion.error {
-    background-color: #e74c3c;
-}
-
-.notificacion.info {
-    background-color: #3498db;
-}
-</style>
-`);
+            notificacion.classList.add('mostrar');
+        }, 10);
+        
+        setTimeout(() => {
+            notificacion.classList.remove('mostrar');
+            setTimeout(() => {
+                document.body.removeChild(notificacion);
+            }, 300);
+        }, 3000);
+    }
+});
