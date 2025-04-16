@@ -56,20 +56,15 @@ function filtrarPorCategoria(categoria) {
     }
 }
 
-// Agregar botones de "Agregar" a cada canal
+// Configurar eventos para los botones de agregar
 document.addEventListener('DOMContentLoaded', function() {
-    const canalCards = document.querySelectorAll('.canal-card');
+    const btnsAgregar = document.querySelectorAll('.btn-agregar');
     
-    canalCards.forEach(card => {
-        // Crear botón de agregar
-        const btnAgregar = document.createElement('button');
-        btnAgregar.className = 'btn-agregar';
-        btnAgregar.innerHTML = '<i class="fas fa-plus"></i>';
-        btnAgregar.onclick = function() {
+    btnsAgregar.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const card = this.closest('.canal-card');
             agregarAlCarrito(card);
-        };
-        card.style.position = 'relative';
-        card.appendChild(btnAgregar);
+        });
     });
     
     // Cargar carrito desde localStorage si existe
@@ -77,6 +72,19 @@ document.addEventListener('DOMContentLoaded', function() {
     if (carritoGuardado) {
         carrito = JSON.parse(carritoGuardado);
         actualizarCarrito();
+        
+        // Marcar canales ya agregados
+        const canalCards = document.querySelectorAll('.canal-card');
+        canalCards.forEach(card => {
+            const nombre = card.querySelector('h3').textContent;
+            const existe = carrito.some(item => item.nombre === nombre);
+            const btn = card.querySelector('.btn-agregar');
+            
+            if (existe) {
+                btn.classList.add('agregado');
+                btn.innerHTML = '<i class="fas fa-check"></i>';
+            }
+        });
     }
 });
 
@@ -142,6 +150,7 @@ function actualizarCarrito() {
 }
 
 function eliminarDelCarrito(index) {
+    const nombreEliminado = carrito[index].nombre;
     carrito.splice(index, 1);
     localStorage.setItem('carritoCanales', JSON.stringify(carrito));
     actualizarCarrito();
@@ -161,6 +170,8 @@ function eliminarDelCarrito(index) {
             btn.innerHTML = '<i class="fas fa-plus"></i>';
         }
     });
+    
+    mostrarNotificacion(`"${nombreEliminado}" eliminado del carrito`);
 }
 
 function limpiarCarrito() {
@@ -212,7 +223,7 @@ function enviarWhatsApp() {
     const mensajeCodificado = encodeURIComponent(mensaje);
     
     // Número de WhatsApp (reemplaza con tu número)
-    const numeroWhatsApp = '+573011382447'; // Ejemplo: Argentina +54 9 11 1234-5678
+    const numeroWhatsApp = '5491112345678'; // Ejemplo: Argentina +54 9 11 1234-5678
     
     // Abrir WhatsApp
     window.open(`https://wa.me/${numeroWhatsApp}?text=${mensajeCodificado}`, '_blank');
@@ -236,38 +247,3 @@ function mostrarNotificacion(mensaje, tipo = 'success') {
         }, 300);
     }, 3000);
 }
-
-// Estilos para notificaciones (agregar al CSS)
-document.head.insertAdjacentHTML('beforeend', `
-<style>
-.notificacion {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 12px 24px;
-    border-radius: 4px;
-    color: white;
-    font-weight: bold;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    z-index: 1000;
-}
-
-.notificacion.mostrar {
-    opacity: 1;
-}
-
-.notificacion.success {
-    background-color: #2ecc71;
-}
-
-.notificacion.error {
-    background-color: #e74c3c;
-}
-
-.notificacion.info {
-    background-color: #3498db;
-}
-</style>
-`);

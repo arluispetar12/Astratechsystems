@@ -50,6 +50,17 @@
     transform: translateY(-2px);
 }
 
+/* Layout principal */
+.main-container {
+    display: flex;
+    gap: 2rem;
+    padding: 2rem 0;
+}
+
+.categorias-canales {
+    flex: 1;
+}
+
 /* Filtros */
 .filtros {
     margin-bottom: 2rem;
@@ -109,6 +120,7 @@
     transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 .canal-card:hover {
@@ -164,26 +176,14 @@
     background-color: #2ecc71;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    .grid-canales {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    }
-}
-
-@media (max-width: 480px) {
-    .grid-canales {
-        grid-template-columns: 1fr;
-    }
-}
-
 /* Estilos del carrito */
 .carrito-container {
+    width: 350px;
     background: white;
     border-radius: 8px;
     box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
     padding: 1.5rem;
-    margin-top: 3rem;
+    align-self: flex-start;
     position: sticky;
     top: 20px;
 }
@@ -217,7 +217,7 @@
 
 .carrito-lista {
     min-height: 100px;
-    max-height: 300px;
+    max-height: 400px;
     overflow-y: auto;
     margin-bottom: 1rem;
 }
@@ -289,7 +289,7 @@
     background-color: #128C7E;
 }
 
-/* Botón de agregar a los canales */
+/* Botón de agregar */
 .btn-agregar {
     position: absolute;
     top: 10px;
@@ -316,10 +316,66 @@
     background-color: #2ecc71;
 }
 
-/* Responsive para el carrito */
-@media (max-width: 768px) {
+/* Notificaciones */
+.notificacion {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 24px;
+    border-radius: 4px;
+    color: white;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1000;
+}
+
+.notificacion.mostrar {
+    opacity: 1;
+}
+
+.notificacion.success {
+    background-color: #2ecc71;
+}
+
+.notificacion.error {
+    background-color: #e74c3c;
+}
+
+.notificacion.info {
+    background-color: #3498db;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .main-container {
+        flex-direction: column;
+    }
+    
     .carrito-container {
+        width: 100%;
         position: static;
         margin-top: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .grid-canales {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    .grid-canales {
+        grid-template-columns: 1fr;
+    }
+    
+    .filtro-categorias {
+        justify-content: center;
+    }
+    
+    .carrito-acciones {
+        flex-direction: column;
     }
 }
