@@ -1,8 +1,7 @@
 // Carrito de canales
 let carrito = [];
-let cartOpen = false;
 
-// Funciones de filtrado
+// Funcionalidad de búsqueda y filtrado
 function filtrarCanales() {
     const input = document.getElementById('buscador-canales');
     const filter = input.value.toUpperCase();
@@ -57,19 +56,29 @@ function filtrarPorCategoria(categoria) {
     }
 }
 
-// Funciones del carrito
-function toggleCart() {
-    const floatingCart = document.getElementById('floatingCart');
-    cartOpen = !cartOpen;
+// Agregar botones de "Agregar" a cada canal
+document.addEventListener('DOMContentLoaded', function() {
+    const canalCards = document.querySelectorAll('.canal-card');
     
-    if (cartOpen) {
-        floatingCart.classList.add('active');
-        document.body.style.overflow = 'hidden'; // Evitar scroll del body cuando el carrito está abierto
-    } else {
-        floatingCart.classList.remove('active');
-        document.body.style.overflow = 'auto';
+    canalCards.forEach(card => {
+        // Crear botón de agregar
+        const btnAgregar = document.createElement('button');
+        btnAgregar.className = 'btn-agregar';
+        btnAgregar.innerHTML = '<i class="fas fa-plus"></i>';
+        btnAgregar.onclick = function() {
+            agregarAlCarrito(card);
+        };
+        card.style.position = 'relative';
+        card.appendChild(btnAgregar);
+    });
+    
+    // Cargar carrito desde localStorage si existe
+    const carritoGuardado = localStorage.getItem('carritoCanales');
+    if (carritoGuardado) {
+        carrito = JSON.parse(carritoGuardado);
+        actualizarCarrito();
     }
-}
+});
 
 function agregarAlCarrito(card) {
     const nombre = card.querySelector('h3').textContent;
@@ -97,48 +106,42 @@ function agregarAlCarrito(card) {
         localStorage.setItem('carritoCanales', JSON.stringify(carrito));
         
         actualizarCarrito();
-        mostrarNotificacion(`"${nombre}" agregado al carrito`);
         
-        // Abrir el carrito automáticamente solo en móvil
-        if (window.innerWidth <= 768 && !cartOpen) {
-            toggleCart();
-        }
+        // Mostrar notificación
+        mostrarNotificacion(`"${nombre}" agregado al carrito`);
     } else {
+        // Mostrar notificación de que ya está agregado
         mostrarNotificacion(`"${nombre}" ya está en el carrito`, 'info');
     }
 }
 
 function actualizarCarrito() {
-    const cartItems = document.getElementById('cartItems');
-    const counter = document.getElementById('floatingCartCounter');
+    const listaCarrito = document.getElementById('lista-carrito');
+    const contador = document.getElementById('contador-carrito');
     
-    counter.textContent = carrito.length;
+    contador.textContent = carrito.length;
     
     if (carrito.length === 0) {
-        cartItems.innerHTML = '<p class="empty-cart-message">No has seleccionado ningún canal aún</p>';
+        listaCarrito.innerHTML = '<p class="carrito-vacio">No has seleccionado ningún canal aún</p>';
         return;
     }
     
-    cartItems.innerHTML = '';
+    listaCarrito.innerHTML = '';
     
     carrito.forEach((item, index) => {
         const itemElement = document.createElement('div');
-        itemElement.className = 'cart-item';
+        itemElement.className = 'item-carrito';
         itemElement.innerHTML = `
-            <div class="cart-item-info">
-                <span class="cart-item-name">${item.nombre}</span>
-                <span class="cart-item-quality">${item.calidad}</span>
-            </div>
-            <button class="remove-item" onclick="eliminarDelCarrito(${index})">
+            <div class="nombre">${item.nombre}</div>
+            <button class="btn-eliminar" onclick="eliminarDelCarrito(${index})">
                 <i class="fas fa-trash-alt"></i>
             </button>
         `;
-        cartItems.appendChild(itemElement);
+        listaCarrito.appendChild(itemElement);
     });
 }
 
 function eliminarDelCarrito(index) {
-    const nombreEliminado = carrito[index].nombre;
     carrito.splice(index, 1);
     localStorage.setItem('carritoCanales', JSON.stringify(carrito));
     actualizarCarrito();
@@ -158,8 +161,6 @@ function eliminarDelCarrito(index) {
             btn.innerHTML = '<i class="fas fa-plus"></i>';
         }
     });
-    
-    mostrarNotificacion(`"${nombreEliminado}" eliminado del carrito`);
 }
 
 function limpiarCarrito() {
@@ -211,7 +212,7 @@ function enviarWhatsApp() {
     const mensajeCodificado = encodeURIComponent(mensaje);
     
     // Número de WhatsApp (reemplaza con tu número)
-    const numeroWhatsApp = '5491112345678';
+    const numeroWhatsApp = '5491112345678'; // Ejemplo: Argentina +54 9 11 1234-5678
     
     // Abrir WhatsApp
     window.open(`https://wa.me/${numeroWhatsApp}?text=${mensajeCodificado}`, '_blank');
@@ -236,29 +237,37 @@ function mostrarNotificacion(mensaje, tipo = 'success') {
     }, 3000);
 }
 
-// Inicialización
-document.addEventListener('DOMContentLoaded', function() {
-    // Cargar carrito desde localStorage
-    const carritoGuardado = localStorage.getItem('carritoCanales');
-    if (carritoGuardado) {
-        carrito = JSON.parse(carritoGuardado);
-        actualizarCarrito();
-    }
-    
-    // Configurar eventos de clic para los botones de agregar
-    document.querySelectorAll('.canal-card').forEach(card => {
-        const btnAgregar = card.querySelector('.btn-agregar');
-        btnAgregar.addEventListener('click', function(e) {
-            e.stopPropagation(); // Prevenir que el clic se propague a la tarjeta
-            agregarAlCarrito(card);
-        });
-    });
-    
-    // Cerrar carrito al hacer clic fuera de él
-    document.addEventListener('click', function(e) {
-        const floatingCart = document.getElementById('floatingCart');
-        if (cartOpen && !floatingCart.contains(e.target)) {
-            toggleCart();
-        }
-    });
-});
+// Estilos para notificaciones (agregar al CSS)
+document.head.insertAdjacentHTML('beforeend', `
+<style>
+.notificacion {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 24px;
+    border-radius: 4px;
+    color: white;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1000;
+}
+
+.notificacion.mostrar {
+    opacity: 1;
+}
+
+.notificacion.success {
+    background-color: #2ecc71;
+}
+
+.notificacion.error {
+    background-color: #e74c3c;
+}
+
+.notificacion.info {
+    background-color: #3498db;
+}
+</style>
+`);
