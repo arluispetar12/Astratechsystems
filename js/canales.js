@@ -1,21 +1,84 @@
 // Carrito de canales
 let carrito = [];
-let cartOpen = false;
 
-// Funciones de filtrado (igual que antes)
-// ...
+// Funcionalidad de búsqueda y filtrado
+function filtrarCanales() {
+    const input = document.getElementById('buscador-canales');
+    const filter = input.value.toUpperCase();
+    const cards = document.querySelectorAll('.canal-card');
 
-// Funciones del carrito
-function toggleCart() {
-    const floatingCart = document.getElementById('floatingCart');
-    cartOpen = !cartOpen;
+    cards.forEach(card => {
+        const nombre = card.getAttribute('data-nombre').toUpperCase();
+        if (nombre.includes(filter)) {
+            card.style.display = "";
+        } else {
+            card.style.display = "none";
+        }
+    });
+}
+
+function filtrarPorCategoria(categoria) {
+    // Actualizar botones activos
+    document.querySelectorAll('.filtro-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
     
-    if (cartOpen) {
-        floatingCart.classList.add('active');
+    // Activar el botón clickeado
+    event.target.classList.add('active');
+
+    const cards = document.querySelectorAll('.canal-card');
+    
+    if (categoria === 'todas') {
+        cards.forEach(card => {
+            card.style.display = "";
+        });
+        document.querySelectorAll('.categoria').forEach(cat => {
+            cat.style.display = "";
+        });
     } else {
-        floatingCart.classList.remove('active');
+        // Ocultar todas las categorías primero
+        document.querySelectorAll('.categoria').forEach(cat => {
+            cat.style.display = "none";
+        });
+        
+        // Mostrar solo la categoría seleccionada
+        document.getElementById(categoria).style.display = "";
+        
+        // Filtrar canales
+        cards.forEach(card => {
+            const cardCat = card.getAttribute('data-categoria');
+            if (cardCat === categoria) {
+                card.style.display = "";
+            } else {
+                card.style.display = "none";
+            }
+        });
     }
 }
+
+// Agregar botones de "Agregar" a cada canal
+document.addEventListener('DOMContentLoaded', function() {
+    const canalCards = document.querySelectorAll('.canal-card');
+    
+    canalCards.forEach(card => {
+        // Crear botón de agregar
+        const btnAgregar = document.createElement('button');
+        btnAgregar.className = 'btn-agregar';
+        btnAgregar.innerHTML = '<i class="fas fa-plus"></i>';
+        btnAgregar.onclick = function() {
+            agregarAlCarrito(card);
+        };
+        card.style.position = 'relative';
+        card.appendChild(btnAgregar);
+    });
+    
+    // Cargar carrito desde localStorage si existe
+    const carritoGuardado = localStorage.getItem('carritoCanales');
+    if (carritoGuardado) {
+        carrito = JSON.parse(carritoGuardado);
+        actualizarCarrito();
+    }
+});
 
 function agregarAlCarrito(card) {
     const nombre = card.querySelector('h3').textContent;
@@ -43,45 +106,42 @@ function agregarAlCarrito(card) {
         localStorage.setItem('carritoCanales', JSON.stringify(carrito));
         
         actualizarCarrito();
-        mostrarNotificacion(`"${nombre}" agregado al carrito`);
         
-        // Abrir el carrito automáticamente
-        if (!cartOpen) {
-            toggleCart();
-        }
+        // Mostrar notificación
+        mostrarNotificacion(`"${nombre}" agregado al carrito`);
     } else {
+        // Mostrar notificación de que ya está agregado
         mostrarNotificacion(`"${nombre}" ya está en el carrito`, 'info');
     }
 }
 
 function actualizarCarrito() {
-    const cartItems = document.getElementById('cartItems');
-    const counter = document.getElementById('floatingCartCounter');
+    const listaCarrito = document.getElementById('lista-carrito');
+    const contador = document.getElementById('contador-carrito');
     
-    counter.textContent = carrito.length;
+    contador.textContent = carrito.length;
     
     if (carrito.length === 0) {
-        cartItems.innerHTML = '<p class="empty-cart-message">No has seleccionado ningún canal aún</p>';
+        listaCarrito.innerHTML = '<p class="carrito-vacio">No has seleccionado ningún canal aún</p>';
         return;
     }
     
-    cartItems.innerHTML = '';
+    listaCarrito.innerHTML = '';
     
     carrito.forEach((item, index) => {
         const itemElement = document.createElement('div');
-        itemElement.className = 'cart-item';
+        itemElement.className = 'item-carrito';
         itemElement.innerHTML = `
-            <div class="cart-item-name">${item.nombre}</div>
-            <button class="remove-item" onclick="eliminarDelCarrito(${index})">
+            <div class="nombre">${item.nombre}</div>
+            <button class="btn-eliminar" onclick="eliminarDelCarrito(${index})">
                 <i class="fas fa-trash-alt"></i>
             </button>
         `;
-        cartItems.appendChild(itemElement);
+        listaCarrito.appendChild(itemElement);
     });
 }
 
 function eliminarDelCarrito(index) {
-    const nombreEliminado = carrito[index].nombre;
     carrito.splice(index, 1);
     localStorage.setItem('carritoCanales', JSON.stringify(carrito));
     actualizarCarrito();
@@ -101,8 +161,6 @@ function eliminarDelCarrito(index) {
             btn.innerHTML = '<i class="fas fa-plus"></i>';
         }
     });
-    
-    mostrarNotificacion(`"${nombreEliminado}" eliminado del carrito`);
 }
 
 function limpiarCarrito() {
@@ -160,33 +218,56 @@ function enviarWhatsApp() {
     window.open(`https://wa.me/${numeroWhatsApp}?text=${mensajeCodificado}`, '_blank');
 }
 
-// Cargar carrito al iniciar
-document.addEventListener('DOMContentLoaded', function() {
-    const carritoGuardado = localStorage.getItem('carritoCanales');
-    if (carritoGuardado) {
-        carrito = JSON.parse(carritoGuardado);
-        actualizarCarrito();
-        
-        // Marcar canales ya agregados
-        const canalCards = document.querySelectorAll('.canal-card');
-        canalCards.forEach(card => {
-            const nombre = card.querySelector('h3').textContent;
-            const existe = carrito.some(item => item.nombre === nombre);
-            const btn = card.querySelector('.btn-agregar');
-            
-            if (existe) {
-                btn.classList.add('agregado');
-                btn.innerHTML = '<i class="fas fa-check"></i>';
-            }
-        });
-    }
+function mostrarNotificacion(mensaje, tipo = 'success') {
+    const notificacion = document.createElement('div');
+    notificacion.className = `notificacion ${tipo}`;
+    notificacion.textContent = mensaje;
     
-    // Configurar botones de agregar
-    const btnsAgregar = document.querySelectorAll('.btn-agregar');
-    btnsAgregar.forEach(btn => {
-        btn.addEventListener('click', function() {
-            const card = this.closest('.canal-card');
-            agregarAlCarrito(card);
-        });
-    });
-});
+    document.body.appendChild(notificacion);
+    
+    setTimeout(() => {
+        notificacion.classList.add('mostrar');
+    }, 10);
+    
+    setTimeout(() => {
+        notificacion.classList.remove('mostrar');
+        setTimeout(() => {
+            document.body.removeChild(notificacion);
+        }, 300);
+    }, 3000);
+}
+
+// Estilos para notificaciones (agregar al CSS)
+document.head.insertAdjacentHTML('beforeend', `
+<style>
+.notificacion {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 24px;
+    border-radius: 4px;
+    color: white;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1000;
+}
+
+.notificacion.mostrar {
+    opacity: 1;
+}
+
+.notificacion.success {
+    background-color: #2ecc71;
+}
+
+.notificacion.error {
+    background-color: #e74c3c;
+}
+
+.notificacion.info {
+    background-color: #3498db;
+}
+</style>
+`);
