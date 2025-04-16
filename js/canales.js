@@ -223,7 +223,7 @@ function enviarWhatsApp() {
     const mensajeCodificado = encodeURIComponent(mensaje);
     
     // Número de WhatsApp (reemplaza con tu número)
-    const numeroWhatsApp = '5491112345678'; // Ejemplo: Argentina +54 9 11 1234-5678
+    const numeroWhatsApp = '+573011382447'; // Ejemplo: Argentina +54 9 11 1234-5678
     
     // Abrir WhatsApp
     window.open(`https://wa.me/${numeroWhatsApp}?text=${mensajeCodificado}`, '_blank');
